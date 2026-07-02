@@ -1,0 +1,62 @@
+{
+    "arm_left": {
+        "name": "arm_left.png", "x": 15.84, "y": -1.23, "rotation": 65.6, "width": 14, "height": 11
+    },
+    "arm_right": {
+        "name": "arm_right.png", "x": 15.78, "y": -3.74, "rotation": 133.58, "width": 15, "height": 17
+    },
+    "hand_left": {
+        "name": "hand_left.png", "x": 11.76, "y": -0.21, "rotation": 46.17, "width": 25, "height": 28
+    },
+    "hand_right": {
+        "name": "hand_right.png", "x": 6.75, "y": -2.99, "rotation": 101.88, "width": 23, "height": 38
+    },
+    "head_front": {
+        "name": "head.png", "x": 28.16, "y": 0.96, "rotation": -90.13, "width": 81, "height": 77
+    },
+    "head_back": {
+        "name": "head_back.png", "x": 28.14, "y": -2.69, "rotation": -90.13, "width": 81, "height": 77
+    },
+    "leg_left_knee": {
+        "name": "knee.png", "x": 12.49, "y": -0.02, "rotation": 80.83, "width": 8, "height": 9
+    },
+    "leg_right_knee": {
+        "name": "knee.png", "x": 10.71, "y": 0.05, "rotation": 88.07, "width": 8, "height": 9
+    },
+    "neck": {
+        "name": "neck.png", "x": 6.61, "y": -1.96, "rotation": -84.56, "width": 20, "height": 18
+    },
+    "arm_left_sleeve": {
+        "name": "sleeve_left.png", "x": 8.88, "y": -2.01, "rotation": 76.85, "width": 14, "height": 22
+    },
+    "arm_right_sleeve": {
+        "name": "sleeve_right.png", "x": 8.04, "y": -1.78, "rotation": 130.74, "width": 23, "height": 18
+    },
+    "shirt_back": {
+        "name": "shirt_back.png", "x": 24.8, "y": 1.45, "rotation": -88.19, "width": 56, "height": 52
+    },
+    "shirt_front": {
+        "name": "shirt_front.png", "x": 24.8, "y": 1.45, "rotation": -88.19, "width": 56, "height": 52
+    },
+    "leg_left_shoe": {
+        "name": "shoes.png", "x": 4.62, "y": 0.29, "rotation": 0.35, "width": 16, "height": 6
+    },
+    "leg_left_shorts": {
+        "name": "shorts_leg.png", "x": 2.61, "y": 0.45, "rotation": 80.83, "width": 12, "height": 16
+    },
+    "leg_left_sock": {
+        "name": "socks.png", "x": 6.76, "y": 0.63, "rotation": 110.26, "width": 11, "height": 14
+    },
+    "leg_right_shoe": {
+        "name": "shoes.png", "x": 3.8, "y": -0.26, "rotation": 4.17, "width": 16, "height": 6
+    },
+    "leg_right_shorts": {
+        "name": "shorts_leg.png", "x": 1.14, "y": 0.39, "rotation": 81.11, "width": 12, "height": 16
+    },
+    "leg_right_sock": {
+        "name": "socks.png", "x": 5.51, "y": 0.76, "rotation": 110.01, "width": 11, "height": 14
+    },
+    "pelvis_shorts": {
+        "name": "shorts.png", "x": -1.27, "y": 0.02, "width": 55, "height": 8
+    }
+}

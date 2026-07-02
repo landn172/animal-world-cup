@@ -1,0 +1,63 @@
+{
+    "frames": {
+        "indicators/controlled_with_ball.png": {
+            "frame": {
+                "w": 52,
+                "x": 104,
+                "y": 0,
+                "h": 52
+            }
+        },
+        "indicators/controlled_no_ball.png": {
+            "frame": {
+                "w": 52,
+                "x": 158,
+                "y": 0,
+                "h": 52
+            }
+        },
+        "indicators/crosshair.png": {
+            "frame": {
+                "w": 52,
+                "x": 50,
+                "y": 0,
+                "h": 52
+            }
+        },
+        "indicators/teammates.png": {
+            "frame": {
+                "w": 48,
+                "x": 0,
+                "y": 0,
+                "h": 64
+            }
+        },
+        "indicators/sight.png": {
+            "frame": {
+                "w": 504,
+                "x": 0,
+                "y": 66,
+                "h": 4
+            }
+        },
+        "indicators/freeze_sight.png": {
+            "frame": {
+                "w": 500,
+                "x": 0,
+                "y": 72,
+                "h": 4
+            }
+        },
+        "indicators/header.png": {
+            "frame": {
+                "w": 8,
+                "x": 212,
+                "y": 0,
+                "h": 26
+            }
+        }
+    },
+    "meta": {
+        "image": "indicators.png"
+    }
+}

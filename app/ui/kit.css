@@ -1,0 +1,165 @@
+/* ============================================================
+ * Animal Cup UI Kit — PAPER-CRAFT skin (owner pick 2026-06-08).
+ * White-edged paper cut-outs, soft layered shadows, warm palette,
+ * slight hand-made tilt. Pure CSS — no 9-slice wood assets.
+ * Pages build chrome from these classes; one source of truth.
+ * ============================================================ */
+
+:root {
+  /* --- paper palette --- */
+  --ak-paper: #f3e6cf;          /* warm paper ground */
+  --ak-paper-2: #e6d7ba;        /* deeper paper */
+  --ak-card: #fffef8;           /* paper white (cards/cut-outs) */
+  --ak-edge: #fffef8;           /* white deckle edge */
+  --ak-ink: #6a4a2a;            /* warm brown text */
+  --ak-ink-soft: #a0764a;       /* secondary text */
+  --ak-title: #c2683a;          /* warm terracotta headings */
+  --ak-accent: #ff7a4c;         /* primary action (paper orange) */
+  --ak-accent-deep: #e0572a;
+  --ak-green: #7ec97a;          /* secondary / active tab (paper green) */
+  --ak-green-deep: #5aa856;
+  --ak-blue: #5bb6d8;           /* tertiary (paper blue) */
+  --ak-red: #ef6b5e;
+  --ak-shadow: rgba(120, 90, 50, 0.3);
+  --ak-shadow-soft: rgba(120, 90, 50, 0.16);
+  /* legacy aliases kept so older page CSS still resolves */
+  --ak-wood-dark: #6a4a2a;
+  --ak-wood: #c2683a;
+  --ak-cream: #fffef8;
+  --ak-gold: #ff7a4c;
+  --ak-seal-red: #ef6b5e;
+
+  --ak-radius-lg: 18px;
+  --ak-radius-md: 12px;
+  --ak-radius-sm: 8px;
+
+  --ak-font-display: var(--font-display, "Baloo 2", "ZCOOL KuaiLe", sans-serif);
+  --ak-font-body: var(--font-body, "Nunito", "Noto Sans SC", sans-serif);
+}
+
+/* ---------- panels ---------- */
+.ak-wood-panel {
+  background: var(--ak-card);
+  border: 6px solid var(--ak-edge);
+  border-radius: var(--ak-radius-lg);
+  box-shadow: 0 7px 16px var(--ak-shadow);
+  color: var(--ak-ink);
+}
+.ak-cream-card {
+  background: var(--ak-card);
+  border: 5px solid var(--ak-edge);
+  border-radius: var(--ak-radius-md);
+  box-shadow: 0 5px 12px var(--ak-shadow);
+  color: var(--ak-ink);
+}
+
+/* ---------- buttons: colored paper cut-out, white border, tilt ---------- */
+.ak-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 13px 30px;
+  font-family: var(--ak-font-display);
+  font-weight: 900;
+  font-size: 17px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(120, 60, 20, 0.35);
+  background: var(--ak-accent);
+  border: 5px solid var(--ak-edge);
+  border-radius: var(--ak-radius-md);
+  box-shadow: 0 6px 12px var(--ak-shadow);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.ak-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px var(--ak-shadow); }
+.ak-btn:active { transform: translateY(2px); box-shadow: 0 3px 7px var(--ak-shadow); }
+.ak-btn--red { background: var(--ak-red); }
+.ak-btn--blue { background: var(--ak-blue); }
+.ak-btn--green { background: var(--ak-green); }
+.ak-btn--sm { padding: 7px 16px; font-size: 14px; border-width: 4px; }
+
+/* ---------- tabs: paper tags, active = green ---------- */
+.ak-tab {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 9px 20px;
+  font-family: var(--ak-font-display);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ak-ink);
+  background: var(--ak-card);
+  border: 3px solid var(--ak-edge);
+  border-radius: var(--ak-radius-sm);
+  box-shadow: 0 3px 7px var(--ak-shadow);
+}
+.ak-tab[aria-selected="true"], .ak-tab--active {
+  background: var(--ak-green);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(40, 90, 30, 0.4);
+}
+
+/* ---------- seal/badge: round paper rosette ---------- */
+.ak-seal {
+  display: inline-grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--ak-accent);
+  color: #fff;
+  border: 4px solid var(--ak-edge);
+  box-shadow: 0 4px 9px var(--ak-shadow);
+  font-family: var(--ak-font-display);
+  font-weight: 900;
+  font-size: 13px;
+  transform: rotate(-6deg);
+}
+
+/* ---------- stat bar: paper trough + green fill ---------- */
+.ak-statbar {
+  position: relative;
+  height: 18px;
+  border-radius: 999px;
+  background: #e3d4b4;
+  box-shadow: inset 0 2px 4px var(--ak-shadow-soft);
+  overflow: hidden;
+}
+.ak-statbar > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #8fd68a, var(--ak-green-deep));
+  min-width: 14px;
+}
+
+/* ---------- chips / tags ---------- */
+.ak-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--ak-font-body);
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--ak-ink);
+  background: var(--ak-card);
+  border: 3px solid var(--ak-edge);
+  border-radius: var(--ak-radius-sm);
+  box-shadow: 0 3px 6px var(--ak-shadow);
+}
+
+/* ---------- dialogue bubble ---------- */
+.ak-bubble {
+  background: var(--ak-card);
+  border: 5px solid var(--ak-edge);
+  border-radius: var(--ak-radius-md);
+  box-shadow: 0 5px 12px var(--ak-shadow);
+  color: var(--ak-ink);
+}

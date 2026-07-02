@@ -1,0 +1,975 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  /* matches the loading curtain green so the nav into /ab has no flash —
+     the match canvas covers this during play */
+  background: #5d9038;
+}
+
+/* ---- hand-drawn match chrome ---- */
+.match-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  background: radial-gradient(140% 110% at 50% 42%, #7fb851 0%, #5d9038 58%, #41702a 100%);
+  transition: opacity 300ms ease;
+}
+.match-curtain__seal {
+  width: min(30vmin, 240px);
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 12px 20px rgba(43, 26, 12, 0.45));
+  animation: seal-breathe 1.6s ease-in-out infinite;
+}
+.match-curtain p {
+  margin: 0;
+  color: #fff7e2;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  text-shadow: 0 3px 0 rgba(58, 38, 20, 0.55);
+  opacity: 0.92;
+}
+/* loading matchup: X vs Y + each side's formation */
+.mc-vs {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(20px, 6vw, 70px);
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+}
+.mc-team {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  animation: mc-pop 360ms ease-out both;
+}
+.mc-vs .pp--lg { width: clamp(110px, 22vmin, 168px); height: clamp(110px, 22vmin, 168px); }
+.mc-team b {
+  color: #fff7e2;
+  font-size: clamp(18px, 3.4vmin, 26px);
+  font-weight: 900;
+  text-shadow: 0 3px 0 rgba(58, 38, 20, 0.55);
+}
+.mc-team em {
+  font-style: normal;
+  font-size: clamp(13px, 2vmin, 16px);
+  font-weight: 800;
+  color: #2f5d22;
+  background: #fff7e2;
+  border-radius: 999px;
+  padding: 3px 14px 4px;
+  box-shadow: 0 3px 0 rgba(58, 38, 20, 0.3);
+  letter-spacing: 0.06em;
+}
+.mc-vs-badge {
+  display: grid;
+  place-items: center;
+  width: clamp(56px, 11vmin, 86px);
+  height: clamp(56px, 11vmin, 86px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  color: #fff7e2;
+  font-size: clamp(22px, 4.4vmin, 34px);
+  font-weight: 900;
+  font-style: italic;
+  text-shadow: 0 3px 0 rgba(58, 38, 20, 0.45);
+  transform: rotate(-6deg);
+  box-shadow: 0 10px 28px rgba(34, 52, 22, 0.35);
+  animation: mc-pop 360ms 120ms ease-out both;
+}
+@keyframes mc-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes seal-breathe {
+  0%, 100% { transform: rotate(-9deg) scale(1); }
+  50% { transform: rotate(-7deg) scale(1.05); }
+}
+/* unified glass control cluster — all controls, one style, grouped on the right */
+.match-controls {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+}
+.glass-btn,
+.match-controls .lang-switcher__toggle {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+  color: #4f8a2f;
+  background: #fffef8;
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(70, 90, 120, 0.22);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.glass-btn svg,
+.match-controls .lang-switcher__toggle svg { filter: none; }
+.glass-btn:hover,
+.match-controls .lang-switcher__toggle:hover { transform: translateY(-2px); background: #ffffff; }
+.glass-btn:active { transform: scale(0.93); }
+.glass-btn:disabled { opacity: 0.55; cursor: wait; }
+/* tooltip on hover — storybook style (cream card, green text) */
+.glass-btn[data-tip],
+.lang-switcher__toggle[data-tip] { position: relative; }
+.glass-btn[data-tip]::after,
+.lang-switcher__toggle[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  padding: 5px 12px;
+  border-radius: 10px;
+  background: #fffef8;
+  color: #4f8a2f;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  border: 2px solid rgba(93, 144, 56, 0.3);
+  box-shadow: 0 3px 10px rgba(60, 80, 40, 0.2);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.glass-btn[data-tip]:hover::after,
+.lang-switcher__toggle[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+/* The lang switcher is a shared component; its base styles (globals.css) add
+   margin-left:10px + align-self:center for the landing. In the HUD that made it
+   sit with an uneven gap and off-alignment vs the other buttons — strip them so
+   it's spaced and aligned exactly like the glass buttons. */
+.match-controls .lang-switcher { margin-left: 0; align-self: auto; }
+/* the cluster sits at the bottom — its language dropdown opens upward */
+.match-controls .lang-switcher__menu { top: auto; bottom: 0; right: calc(100% + 10px); left: auto; }
+
+/* ---- event card: transient top-center pop, never blocks play ---- */
+.event-card {
+  position: fixed;
+  top: 84px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  justify-items: center;
+  pointer-events: none;        /* the match keeps running underneath */
+}
+.event-card__frame {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 40px;
+  min-width: 220px;
+  animation: stamp-slam 360ms cubic-bezier(0.2, 1.6, 0.45, 1) both;
+}
+.event-card__frame strong {
+  font-family: var(--ak-font-display, "Baloo 2", sans-serif);
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--ak-seal-red, #8c2f24);
+  text-shadow: 0 2px 0 rgba(255, 244, 214, 0.9);
+}
+.event-card__frame p { margin: 0; color: var(--ak-ink, #4a301e); font-weight: 800; font-size: 20px; }
+.event-card--half .event-card__frame strong { color: var(--ak-wood-dark, #5a3a1c); font-size: 26px; }
+.event-card--half .event-card__frame p { font-size: 14px; font-weight: 700; }
+@keyframes stamp-slam {
+  0% { transform: scale(2) rotate(-12deg); opacity: 0; }
+  62% { transform: scale(0.96) rotate(1deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ===== full-time result screen (owner: 结算画面, no more freeze) ===== */
+.match-result {
+  position: fixed; inset: 0; z-index: 60;
+  /* flex + margin:auto on the card (not place-items) so a tall card on a short
+     landscape phone stays fully scrollable — grid/flex centering would clip and
+     trap the buttons off-screen */
+  display: flex;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 12px;
+  background: rgba(30, 18, 8, 0.55);
+  animation: mr-fade 0.3s ease;
+}
+.match-result__card { margin: auto; }
+@keyframes mr-fade { from { opacity: 0; } to { opacity: 1; } }
+.match-result__card {
+  position: relative;
+  width: min(440px, 92vw);
+  padding: 30px 28px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  text-align: center;
+  animation: mr-pop 0.32s cubic-bezier(.2,1.3,.5,1);
+}
+@keyframes mr-pop { from { transform: scale(.85); } to { transform: scale(1); } }
+.match-result__rib {
+  font-family: var(--ak-font-display); font-weight: 800; font-size: 15px;
+  letter-spacing: .08em; color: var(--ak-seal-red);
+}
+.match-result__score { display: flex; align-items: center; gap: 16px; }
+.match-result__nums {
+  font-family: var(--ak-font-display); font-weight: 900; font-size: 46px;
+  color: var(--ak-wood-dark);
+}
+.match-result__nums i { font-style: normal; opacity: .5; }
+.match-result__names {
+  display: flex; justify-content: space-between; width: 100%;
+  padding: 0 6px; font-weight: 800; font-size: 15px; color: var(--ak-ink);
+}
+.match-result__verdict {
+  font-family: var(--ak-font-display); font-size: 22px; color: var(--ak-wood);
+  margin-top: 2px;
+}
+/* Rematch / New Match = equal width (two equal columns), only label differs */
+.match-result__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; width: 100%; }
+
+/* portrait disc (match page has no dash.css) */
+.pp { display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 50% 36%, #fff6df, #f3d9a4);
+  box-shadow: inset 0 0 0 3px rgba(122,68,38,.5); overflow: hidden; }
+.pp img { width: 84%; height: 84%; object-fit: contain; }
+.pp--lg { width: 96px; height: 96px; }
+
+@media (max-width: 760px) {
+  .match-result__card { width: 90vw; padding: 22px 16px 18px; }
+  .match-result__nums { font-size: 38px; }
+  .pp--lg { width: 76px; height: 76px; }
+}
+
+/* landscape phones: short viewport — compress the full-time card so the
+   Rematch / New-match buttons stay on screen (was 512px tall in a 410px view) */
+@media (max-height: 500px) {
+  .match-result__card { width: min(560px, 94vw); padding: 12px 18px 12px; gap: 5px; }
+  .match-result__rib { transform: translateY(-50%) scale(0.85); }
+  .match-result__score { gap: 12px; }
+  .match-result__nums { font-size: 30px; }
+  .pp--lg { width: 50px; height: 50px; }
+  .match-result__verdict { font-size: 16px; margin-top: 0; }
+  .match-result__names { font-size: 12px; }
+  .match-result__stats { width: 100%; font-size: 11px; }
+  .match-result__actions { margin-top: 4px; }
+}
+
+/* ===== paper-craft scoreboard (overlays the engine pixel HUD) ===== */
+.match-score {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  /* design E: score row + possession row stacked into one top element */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 8px 18px 9px;
+  /* CONSTANT width open AND closed → expanding only grows height, so the score
+     row's heads/flags never re-centre and shift. Capped for mobile. */
+  width: min(340px, calc(100vw - 24px));
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  border-radius: 16px;
+  box-shadow: 0 5px 12px var(--ak-shadow, rgba(120, 90, 50, 0.32));
+  /* the whole board is the stats tap-target now (button reset) */
+  font: inherit; color: inherit; cursor: pointer; -webkit-appearance: none; appearance: none;
+  transition: box-shadow 120ms ease;
+}
+/* box-shadow-only hover (no transform — the board is translateX(-50%) centered
+   on desktop but left-pinned in touch-play, so a transform here would jump it) */
+.match-score:hover { box-shadow: 0 8px 18px var(--ak-shadow, rgba(120, 90, 50, 0.4)); }
+/* it's a clickable button (tap to open stats) — kill the browser's default
+   focus ring (the orange box) on click/tap; keep a subtle brand ring only for
+   keyboard focus (a11y). */
+.match-score { outline: none; -webkit-tap-highlight-color: transparent; }
+.match-score:focus { outline: none; }
+.match-score:focus-visible { outline: 3px solid rgba(93, 144, 56, 0.55); outline-offset: 3px; }
+.match-score .ms-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+/* possession row (replaces the old standalone stats card) */
+.match-score .ms-poss { display: flex; align-items: center; gap: 6px; padding: 0 2px; }
+.match-score .ms-pct { font-style: normal; font-size: 10px; font-weight: 900; font-variant-numeric: tabular-nums; min-width: 26px; color: #d8443a; }
+.match-score .ms-pct--b { color: #3f7fb1; text-align: right; }
+.match-score .ms-bar { flex: 1; display: flex; height: 7px; border-radius: 999px; overflow: hidden; background: rgba(120, 90, 50, 0.15); }
+.match-score .ms-barR { background: #d8443a; }
+.match-score .ms-barB { background: #3f7fb1; }
+.match-score .ms-chev { width: 13px; height: 13px; color: #9aa888; flex-shrink: 0; transition: transform 160ms ease; }
+.match-score.is-open .ms-chev { transform: rotate(180deg); }
+/* tap-to-expand dropdown: full stats drop down inside the board (no modal).
+   The board width is constant (set above), so opening only adds the detail
+   block below — nothing in the score row moves. */
+.match-score .ms-detail { width: 100%; margin-top: 8px; padding-top: 9px; border-top: 1px solid rgba(120, 90, 50, 0.18); }
+.match-score .ms-side { display: flex; align-items: center; gap: 7px; }
+/* national flag = SMALL badge next to the beast (must not balloon) */
+.match-score .ms-flag {
+  width: 30px; height: 21px; flex: 0 0 auto;
+  object-fit: cover; border-radius: 4px;
+  border: 2px solid #fffef8;
+  box-shadow: 0 1px 3px rgba(120, 90, 50, 0.35);
+}
+.match-score .ms-head {
+  width: 42px; height: 42px; flex: 0 0 auto; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center; background: #fff;
+  box-shadow: 0 0 0 3px #fffef8, 0 2px 5px rgba(120, 90, 50, 0.3);
+}
+.match-score .ms-head img { width: 88%; height: 88%; object-fit: contain; }
+.match-score .ms-num {
+  font-family: var(--ak-font-display, "Baloo 2", sans-serif);
+  font-weight: 900; font-size: 28px; color: var(--ak-ink, #6a4a2a);
+  /* tabular figures + a fixed two-digit slot so the board never reflows as the
+     score grows (1 → 2 digits) */
+  font-variant-numeric: tabular-nums; min-width: 30px; text-align: center;
+}
+.match-score .ms-clock {
+  font-family: var(--ak-font-display, "Baloo 2", sans-serif);
+  font-weight: 800; font-size: 13px; color: #fff;
+  background: var(--ak-green, #7ec97a); padding: 3px 9px; border-radius: 999px;
+  /* fixed slot wide enough for "90'" + tabular figures: the whole (centred)
+     scoreboard must NOT change width as the minute goes 1 → 2 digits */
+  box-sizing: border-box; min-width: 44px; text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== unified SOLID paper-white theme (owner 2026-06-16): drop the glass — it
+   flip-flopped transparent<->opaque. Every match surface is now a solid cream
+   card (#fffef8) with dark green/brown type, same family as the controls legend,
+   tooltips and loading card. */
+
+/* language dropdown */
+.match-controls .lang-switcher__menu {
+  background: #fffef8;
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  box-shadow: 0 6px 16px rgba(70, 90, 120, 0.25);
+}
+.match-controls .lang-switcher__menu button { color: #5b4a2f; }
+.match-controls .lang-switcher__menu button:hover { background: rgba(120, 90, 50, 0.1); }
+.match-controls .lang-switcher__menu button.is-active { background: rgba(93, 144, 56, 0.16); color: #4f8a2f; }
+
+/* scoreboard: no glass override — falls back to the solid paper-craft base above
+   (solid #fffef8 card, brown numbers, green clock pill, white avatar discs). */
+
+/* loading curtain pieces */
+.mc-team em {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.mc-vs-badge {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 18px rgba(30, 40, 25, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+.mc-vs .pp {
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.5), 0 6px 18px rgba(30, 40, 25, 0.2);
+}
+
+/* full-time result — solid cream card on a dark scrim (rib / nums / names /
+   verdict / pp keep their paper-craft base colours: dark green/brown). */
+.match-result {
+  background: rgba(20, 30, 14, 0.55);
+}
+.match-result__card {
+  background: #fffef8;
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(20, 30, 14, 0.4);
+}
+.match-result .ak-btn {
+  box-sizing: border-box; width: 100%;
+  background: #5d9038;
+  border: 2px solid #4f7a2a;
+  color: #fff7e2;
+  box-shadow: 0 4px 0 rgba(58, 38, 20, 0.25);
+}
+.match-result .ak-btn:hover { background: #6aa340; }
+
+/* ---- curtain v2: centre-circle backdrop, animal pill, formation caption ---- */
+.mc-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130vmin;
+  height: 130vmin;
+  transform: translate(-50%, -50%);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.mc-ring::before {
+  content: "";
+  position: absolute;
+  left: -60vw;
+  right: -60vw;
+  top: 50%;
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+}
+.mc-ring::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border: 3px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+.match-curtain > .mc-vs, .match-curtain > .mc-loading { position: relative; }
+.mc-form-name {
+  font-style: normal;
+  font-size: clamp(12px, 1.8vmin, 15px);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 247, 226, 0.85);
+  text-shadow: 0 2px 0 rgba(58, 38, 20, 0.4);
+}
+.mc-loading::after {
+  content: "";
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+  animation: mc-dots 1.2s steps(4) infinite;
+}
+@keyframes mc-dots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+}
+/* formation dots pop in one by one */
+.form-diagram circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fd-pop 340ms cubic-bezier(0.2, 1.6, 0.45, 1) both;
+}
+@keyframes fd-pop {
+  from { opacity: 0; transform: scale(0.2); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* encyclopedia: scoreboard avatars are clickable */
+.match-score .ms-head { cursor: pointer; }
+
+/* goal: scoreboard pop (class toggled by GoalFx) */
+body.ab-goal-pop .match-score { animation: score-pop 520ms cubic-bezier(0.2, 1.6, 0.45, 1); }
+
+/* cinematic vignette — pure CSS overlay (engine filters are unsafe under the
+   v3-compat shim); sits under the HUD, over the canvas */
+/* ===== lighting system (owner 2026-06-12): 早上 / 中午 / 夜晚 washes over
+   the SIMULATION ONLY. CSS blend modes are our shader — the pixi-v3 shim
+   breaks real stage filters (per-frame errors), and a fixed overlay under
+   the HUD (scoreboard z70+, panels higher) leaves chrome colors untouched. */
+.match-light {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+}
+.match-light::before,
+.match-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+/* morning: low golden sun from the east, soft long warm light */
+.match-light--morning {
+  background: linear-gradient(108deg,
+    rgba(255, 198, 110, 0.42) 0%,
+    rgba(255, 226, 170, 0.20) 42%,
+    rgba(150, 165, 215, 0.16) 100%);
+  mix-blend-mode: soft-light;
+}
+.match-light--morning::before {
+  background: linear-gradient(108deg, rgba(255, 196, 120, 0.16), rgba(255, 240, 210, 0) 55%);
+  mix-blend-mode: multiply;
+}
+/* noon: bright, crisp, a touch of overhead punch — barely there */
+.match-light--noon {
+  background: radial-gradient(110% 90% at 50% 38%,
+    rgba(255, 255, 238, 0.30) 0%,
+    rgba(255, 255, 250, 0.10) 55%,
+    rgba(80, 90, 60, 0.18) 100%);
+  mix-blend-mode: soft-light;
+}
+/* night: deep blue dusk multiply + floodlight glows from the four masts */
+.match-light--night {
+  background: radial-gradient(120% 105% at 50% 45%,
+    rgba(168, 180, 222, 0.94) 0%,
+    rgba(112, 126, 184, 0.96) 60%,
+    rgba(58, 70, 126, 0.97) 100%);
+  mix-blend-mode: multiply;
+}
+.match-light--night::before {
+  background:
+    radial-gradient(40% 36% at 10% 6%, rgba(255, 248, 214, 0.55), transparent 72%),
+    radial-gradient(40% 36% at 90% 6%, rgba(255, 248, 214, 0.55), transparent 72%),
+    radial-gradient(40% 36% at 10% 94%, rgba(255, 248, 214, 0.50), transparent 72%),
+    radial-gradient(40% 36% at 90% 94%, rgba(255, 248, 214, 0.50), transparent 72%);
+  mix-blend-mode: screen;
+}
+.match-light--night::after {
+  /* the lit pitch: floodlights pool brightest at the centre of play */
+  background: radial-gradient(72% 64% at 50% 48%, rgba(240, 244, 255, 0.48), transparent 80%);
+  mix-blend-mode: screen;
+}
+
+.match-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: radial-gradient(120% 105% at 50% 46%, rgba(0, 0, 0, 0) 58%, rgba(20, 32, 12, 0.26) 100%);
+}
+
+/* ===== mobile (owner: 移动端直接横屏显示, 竖屏不做) ===== */
+.rotate-hint { display: none; }
+@media (orientation: portrait) and (pointer: coarse) {
+  .rotate-hint {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 18px;
+    background: radial-gradient(140% 110% at 50% 42%, #7fb851 0%, #5d9038 58%, #41702a 100%);
+    color: #fff7e2;
+    font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-shadow: 0 3px 0 rgba(58, 38, 20, 0.55);
+  }
+  .rotate-hint svg { animation: rh-turn 1.6s ease-in-out infinite; }
+}
+@keyframes rh-turn {
+  0%, 20% { transform: rotate(0deg); }
+  55%, 80% { transform: rotate(90deg); }
+  100% { transform: rotate(90deg); }
+}
+/* compact landscape (phones): shrink chrome, keep the pitch */
+@media (max-height: 500px) {
+  .match-score { top: 6px; padding: 4px 10px; gap: 8px; }
+  .match-score .ms-head { width: 34px; height: 34px; }
+  .match-score .ms-num { font-size: 20px; }
+  .match-controls { right: max(8px, env(safe-area-inset-right)); bottom: 8px; gap: 6px; }
+  .match-controls .glass-btn,
+  .match-controls .lang-switcher__toggle { width: 38px; height: 38px; }
+  .mc-vs .pp--lg { width: clamp(64px, 16vmin, 96px); height: clamp(64px, 16vmin, 96px); }
+  .mc-team b { font-size: clamp(14px, 2.6vmin, 18px); }
+  .form-diagram { width: 84px; height: 107px; }
+  .mc-vs { gap: clamp(14px, 4vw, 40px); }
+  .mc-vs-badge { width: clamp(44px, 9vmin, 60px); height: clamp(44px, 9vmin, 60px); font-size: clamp(17px, 3.6vmin, 24px); }
+  .match-curtain { gap: 10px; }
+}
+/* very short landscape (e.g. iPhone-SE landscape, 320px tall): 8 buttons at
+   38px would clip off the top, so tighten the whole stack so it always fits
+   in one column — no fragile flex-wrap (that mis-aligned the language globe) */
+@media (max-height: 430px) {
+  .match-controls { gap: 4px; bottom: 6px; }
+  .match-controls .glass-btn,
+  .match-controls .lang-switcher__toggle { width: 32px; height: 32px; }
+  .match-controls .glass-btn svg,
+  .match-controls .lang-switcher__toggle svg { width: 18px; height: 18px; }
+}
+/* ===== touch devices: pin the chrome cluster to the TOP (owner, repeated) =====
+   On a phone/tablet the bottom corners hold the thumbs + on-screen touch
+   controls, so the bottom-right chrome (home / zoom / camera / sound) sat right
+   under them. Move the whole cluster to the top-right in EVERY mode — watch,
+   AI-vs-AI and human-vs-AI. Declared last so it wins the `bottom` anchoring set
+   by the short-viewport queries above. */
+@media (pointer: coarse) {
+  .match-controls {
+    top: max(10px, env(safe-area-inset-top));
+    bottom: auto;
+    right: max(10px, env(safe-area-inset-right));
+  }
+  /* the language fan-out now drops DOWN from the top edge, not up off-screen */
+  .match-controls .lang-switcher__menu { top: 0; bottom: auto; }
+}
+
+/* ===== retro cream HUD, grass-green accents (owner 2026-06-11):
+   状态栏与右侧按钮回归奶白复古卡片, 强调色棕→草绿. 单块覆盖, 删除即回滚 ===== */
+.match-score .ms-num { color: #4f8a2f; text-shadow: none; }
+.match-score .ms-clock { background: #5d9038; color: #fff7e2; text-shadow: none; }
+.glass-btn,
+.match-controls .lang-switcher__toggle {
+  background: var(--ak-card, #fffef8);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(120, 90, 50, 0.18);
+  color: #4f8a2f;
+  box-shadow: 0 4px 10px rgba(120, 90, 50, 0.28);
+}
+.glass-btn svg,
+.match-controls .lang-switcher__toggle svg { filter: none; }
+.glass-btn:hover,
+.match-controls .lang-switcher__toggle:hover { background: #f4eed9; transform: translateY(-2px); }
+.match-controls .lang-switcher__menu {
+  background: var(--ak-card, #fffef8);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(120, 90, 50, 0.18);
+  box-shadow: 0 6px 14px rgba(120, 90, 50, 0.3);
+}
+.match-controls .lang-switcher__menu button { color: #4f8a2f; text-shadow: none; }
+.match-controls .lang-switcher__menu button:hover { background: #f4eed9; }
+.match-controls .lang-switcher__menu button.is-active { background: #5d9038; color: #fff7e2; }
+
+/* scoreboard back to the retro cream card (glass override neutralized) */
+.match-score {
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 5px 12px rgba(120, 90, 50, 0.32);
+}
+.match-score .ms-head { background: radial-gradient(circle at 50% 36%, #fff6df, #f3d9a4); box-shadow: inset 0 0 0 2px rgba(120, 90, 50, 0.25); }
+.match-score .ms-flag { border: 2px solid rgba(120, 90, 50, 0.25); box-shadow: 0 1px 3px rgba(120, 90, 50, 0.25); }
+/* goal/half-time card: cream + grass green (wood/orange panel retired) */
+.event-card__frame {
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(120, 90, 50, 0.3);
+}
+.event-card__frame strong { color: #4f8a2f; text-shadow: none; }
+.event-card__frame p { color: #5d9038; }
+.event-card--half .event-card__frame strong { color: #4f8a2f; }
+
+/* full-time result card: retro cream + grass green (matches the HUD) */
+.match-result__card {
+  background: var(--ak-card, #fffef8);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 4px solid var(--ak-edge, #fffef8);
+  box-shadow: 0 12px 30px rgba(60, 50, 30, 0.4);
+}
+.match-result__rib { color: #6b8a55; }
+.match-result__nums { color: #4f8a2f; text-shadow: none; }
+.match-result__names { color: #4a6b35; text-shadow: none; }
+.match-result__verdict { color: #4f8a2f; text-shadow: none; }
+.match-result .pp { background: radial-gradient(circle at 50% 36%, #fff6df, #f3d9a4); box-shadow: inset 0 0 0 2px rgba(120, 90, 50, 0.25); }
+.match-result .ak-btn {
+  background: #5d9038;
+  border: 0;
+  color: #fff7e2;
+  text-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 4px 0 #41702a, 0 8px 16px rgba(60, 50, 30, 0.3);
+}
+.match-result .ak-btn:hover { background: #6aa342; }
+.match-result .ak-btn--outline {
+  background: transparent;
+  border: 2px solid #5d9038;
+  color: #5d9038;
+  box-shadow: none;
+}
+.match-result .ak-btn--outline:hover { background: rgba(93, 144, 56, 0.1); }
+
+/* goal card v2: no circular disc — bare bust + horizontal layout */
+.event-card__frame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 30px;
+  min-width: 0;
+}
+.event-card__head {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(120, 90, 50, 0.35));
+}
+.event-card__text { display: grid; justify-items: center; gap: 2px; }
+
+/* avatar discs: pure white + thin grass-green ring (matches encyclopedia cells) */
+.match-score .ms-head { background: #fff; box-shadow: inset 0 0 0 2px rgba(93, 144, 56, 0.4); }
+.match-result .pp { background: #fff; box-shadow: inset 0 0 0 2px rgba(93, 144, 56, 0.4); }
+
+/* broadcast layout: scoreboard pinned top-left (owner 2026-06-11) */
+.match-score {
+  left: 14px;
+  top: 12px;
+  transform: none;
+}
+@keyframes score-pop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@media (max-height: 500px) {
+  .match-score { left: max(8px, env(safe-area-inset-left)); top: 6px; }
+}
+/* curtain VS badge: solid grass green + cream type (same family as the
+   trait/clock pills — a cream card floats oddly on the green curtain) */
+.mc-vs-badge {
+  background: #5d9038;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 3px solid rgba(255, 247, 226, 0.85);
+  color: #fff7e2;
+  text-shadow: none;
+  box-shadow: 0 6px 16px rgba(40, 60, 25, 0.35);
+}
+
+
+/* lighting must never tint the HUD: scoreboard rises above light(59)+vignette(60) */
+.match-score { z-index: 70; }
+
+/* ===== loading curtain: the hazy pitch seen from high above (clouds
+   removed 2026-06-12 — 老板不喜欢). Covers the boot; ab-match-started fades
+   it into the engine's establishing wide shot, same framing. ===== */
+.cloud-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overflow: hidden;
+  /* storybook grass base — guaranteed background while the aerial photo
+     decodes, and the same green the engine paints off-stadium at reveal */
+  background: radial-gradient(120% 100% at 50% 45%, #6aa843 0%, #5d9038 55%, #4f8a2f 100%);
+}
+/* the engine's diagonal stripe tile drifting slowly across the grass green —
+   same grass motif as the in-game curtain, kept storybook-subtle */
+.cc-pattern {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.4;
+}
+/* GPU-composited drift: translate an oversized tiled layer by exactly one tile
+   so the loop is seamless AND runs on the compositor thread. The match boot
+   (crowd bake, scene build) blocks the MAIN thread for a beat — a
+   background-position animation lives there and visibly stutters during the
+   wait ("loading 加载时卡顿"); a transform animation keeps drifting smoothly
+   because the compositor is untouched. */
+.cc-pattern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 100px);
+  height: 100%;
+  background: url("/match-runtime-min/images/interface/pattern.png") repeat;
+  background-size: 100px 100px;
+  animation: cc-pan 2.4s linear infinite;
+  will-change: transform;
+}
+@keyframes cc-pan {
+  from { transform: translate3d(-100px, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+.cloud-curtain.is-parting { animation: cc-fade 500ms ease forwards; }
+@keyframes cc-fade {
+  0% { background-color: transparent; }
+  55% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* loading heartbeat on the fog — three soft green dots so the wait never
+   reads as a hang (no text, no panel) */
+.cc-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* always above the fog canvas — the card must never be veiled */
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.cc-card {
+  /* FIXED box (owner: 卡片大小起码保持一致) — locale flips (Loading vs
+     加载中), the dots ticker and late-arriving engine css must never
+     change the card's dimensions */
+  box-sizing: border-box;
+  width: 208px;
+  height: 152px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 6px;
+  padding: 0;
+  border-radius: 22px;
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  box-shadow: 0 10px 26px rgba(70, 90, 120, 0.3);
+}
+.cc-card b { white-space: nowrap; }
+/* storybook ball — cream + grass-green pads, spinning (matches the HUD) */
+.cc-ball {
+  animation: cc-spin 1.4s linear infinite;
+  filter: drop-shadow(0 2px 3px rgba(60, 80, 40, 0.25));
+}
+.cc-shadow {
+  width: 34px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(80, 110, 60, 0.3);
+}
+.cc-card b {
+  margin-top: 6px;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: #4f8a2f;
+}
+.cc-dots::after {
+  content: "";
+  display: inline-block;
+  width: 1.3em;
+  text-align: left;
+  animation: mc-dots 1.2s steps(4) infinite;
+}
+@keyframes cc-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* play-mode controls legend (bottom-left, dismissable) */
+.ctrl-legend {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 70;
+  min-width: 170px;
+  padding: 10px 12px 11px;
+  border-radius: 14px;
+  background: #fffef8;
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  box-shadow: 0 6px 16px rgba(70, 90, 120, 0.25);
+  font-family: inherit;
+  color: #5b4a2f;
+  user-select: none;
+}
+.ctrl-legend__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 7px;
+}
+.ctrl-legend__head b { font-size: 13px; font-weight: 900; color: #4f8a2f; letter-spacing: 0.3px; }
+.ctrl-legend__x {
+  border: 0; background: transparent; cursor: pointer;
+  font-size: 18px; line-height: 1; color: rgba(91, 74, 47, 0.55); padding: 0 2px;
+}
+.ctrl-legend__x:hover { color: #5b4a2f; }
+.ctrl-legend__row { display: flex; align-items: center; gap: 9px; padding: 3px 0; }
+.ctrl-legend__keys { display: inline-flex; gap: 4px; min-width: 96px; }
+.ctrl-legend kbd {
+  font-family: inherit;
+  font-size: 11px; font-weight: 800;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  background: #fff7e2;
+  border: 1.5px solid rgba(120, 90, 50, 0.28);
+  box-shadow: 0 2px 0 rgba(120, 90, 50, 0.22);
+  color: #6f7d63;
+}
+.ctrl-legend__act { font-size: 12.5px; font-weight: 700; }
+.ctrl-legend__pill {
+  position: fixed;
+  left: 14px; bottom: 14px; z-index: 70;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  background: #fffef8;
+  color: #4f8a2f; font-weight: 900; font-size: 16px; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(70, 90, 120, 0.22);
+}
+
+/* ===== mobile touch controls (play mode) ===== */
+.tc { position: fixed; inset: 0; z-index: 72; pointer-events: none; }
+
+/* left analog joystick */
+.tc-stick {
+  position: absolute; left: 22px; bottom: 22px;
+  width: 132px; height: 132px; border-radius: 50%;
+  pointer-events: auto; touch-action: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255,254,248,0.30), rgba(255,254,248,0.14));
+  border: 2.5px solid rgba(255,255,255,0.45);
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.18), 0 4px 14px rgba(40,60,25,0.28);
+  display: flex; align-items: center; justify-content: center;
+}
+.tc-thumb {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(255,254,248,0.92);
+  border: 2px solid rgba(120,90,50,0.30);
+  box-shadow: 0 3px 8px rgba(40,60,25,0.35);
+  will-change: transform;
+}
+
+/* right action diamond */
+.tc-pad {
+  position: absolute; right: 22px; bottom: 22px;
+  width: 208px; height: 208px; pointer-events: none;
+}
+.tc-btn {
+  position: absolute; width: 62px; height: 62px; border-radius: 50%;
+  pointer-events: auto; touch-action: none;
+  display: flex; align-items: center; justify-content: center;
+  border: 2.5px solid rgba(255,255,255,0.5);
+  box-shadow: 0 4px 0 rgba(40,60,25,0.28), 0 7px 14px rgba(40,60,25,0.28);
+  color: #fff7e2; cursor: pointer; transition: transform 90ms ease, filter 90ms ease;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.tc-btn:active { transform: translateY(2px) scale(0.96); filter: brightness(1.12); box-shadow: 0 2px 0 rgba(40,60,25,0.28); }
+/* symmetric diamond: 4 equal 62px buttons, equidistant (73px each way) around
+   the centre, so spacing is uniform and it reads tidy */
+.tc-btn--lob    { top: 0;    left: 73px; background: #c98a3b; }
+.tc-btn--pass   { top: 73px; left: 0;    background: #4f8a2f; }
+.tc-btn--tackle { top: 73px; right: 0;   background: #7b8a9a; }
+.tc-btn--shoot  { bottom: 0; left: 73px; background: #5d9038; }
+/* Sprint — held, dead-centre of the diamond (owner: 加速键放四个按钮中间) */
+.tc-btn--sprint { top: 76px; left: 76px; width: 56px; height: 56px; background: #f2b705; color: #3a2e0a; }
+/* (switch-player button removed — auto-switch picks the nearest player) */
+
+/* touch-play: lift the HUD icon strip to a top row so it clears the on-screen
+   pad in the bottom-right thumb zone (scoreboard sits top-left) */
+body.ac-touch-play .match-controls {
+  top: 12px; bottom: auto;
+  /* shift the row left ~one button off the right edge (owner) + clear any
+     landscape notch via the safe-area inset */
+  right: calc(46px + env(safe-area-inset-right, 0px));
+  flex-direction: row; align-items: flex-start; flex-wrap: wrap;
+  max-width: 60vw; justify-content: flex-end;
+}
+/* HUD is at the TOP here, so the language menu must open DOWNWARD (the default
+   opens upward for a bottom-of-column button, which went off the top edge and
+   was unreachable). Right-aligned + on top of everything. */
+body.ac-touch-play .match-controls .lang-switcher__menu {
+  top: calc(100% + 8px); bottom: auto; right: 0; left: auto; z-index: 120;
+}
+
+/* Touch devices have no real hover — the data-tip tooltips get "stuck" on tap
+   and cover the buttons. Hide them where hover isn't available. */
+@media (hover: none) {
+  .glass-btn[data-tip]::after,
+  .lang-switcher__toggle[data-tip]::after { display: none !important; content: none !important; }
+}
+

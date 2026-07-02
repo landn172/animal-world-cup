@@ -1,0 +1,1313 @@
+{
+    "kit": {
+        "arm_left_sleeve": {
+            "../player/kit/sleeve_left.png": {
+                "x": 8.88,
+                "y": -2.01,
+                "rotation": 76.85,
+                "width": 14,
+                "height": 22
+            }
+        },
+        "arm_right_sleeve": {
+            "../player/kit/sleeve_right.png": {
+                "x": 8.04,
+                "y": -1.78,
+                "rotation": 130.74,
+                "width": 23,
+                "height": 18
+            }
+        },
+        "shirt_back": {
+            "../player/kit/shirt_back.png": {
+                "x": 24.8,
+                "y": 1.45,
+                "rotation": -88.19,
+                "width": 56,
+                "height": 52
+            }
+        },
+        "shirt_front": {
+            "../player/kit/shirt_front.png": {
+                "x": 24.8,
+                "y": 1.45,
+                "rotation": -88.19,
+                "width": 56,
+                "height": 52
+            }
+        },
+        "hand_left_glove": {
+            "../player/accesories/hand_left/gloves_1.png": {
+                "x": 20.29,
+                "y": -0.1,
+                "rotation": 44.65,
+                "width": 26,
+                "height": 24
+            }
+        },
+        "hand_right_glove": {
+            "../player/accesories/hand_right/gloves_1.png": {
+                "x": 18.57,
+                "y": -0.32,
+                "rotation": 74.29,
+                "width": 26,
+                "height": 25
+            }
+        },
+        "leg_left_shoe": {
+            "../player/kit/shoes.png": {
+                "x": 4.62,
+                "y": 0.29,
+                "rotation": 0.35,
+                "width": 16,
+                "height": 6
+            }
+        },
+        "leg_left_shorts": {
+            "../player/kit/shorts_leg.png": {
+                "x": 2.61,
+                "y": 0.45,
+                "rotation": 80.83,
+                "width": 12,
+                "height": 16
+            }
+        },
+        "leg_left_sock": {
+            "../player/kit/socks.png": {
+                "x": 6.76,
+                "y": 0.63,
+                "rotation": 110.26,
+                "width": 11,
+                "height": 14
+            }
+        },
+        "leg_right_shoe": {
+            "../player/kit/shoes.png": {
+                "x": 3.8,
+                "y": -0.26,
+                "rotation": 4.17,
+                "width": 16,
+                "height": 6
+            }
+        },
+        "leg_right_shorts": {
+            "../player/kit/shorts_leg.png": {
+                "x": 1.14,
+                "y": 0.39,
+                "rotation": 81.11,
+                "width": 12,
+                "height": 16
+            }
+        },
+        "leg_right_sock": {
+            "../player/kit/socks.png": {
+                "x": 5.51,
+                "y": 0.76,
+                "rotation": 110.01,
+                "width": 11,
+                "height": 14
+            }
+        },
+        "number": {
+            "../player/kit/number.png": {
+                "x": 17.18,
+                "y": 0.16,
+                "rotation": -89.44,
+                "width": 33,
+                "height": 18
+            }
+        },
+        "pelvis_shorts": {
+            "../player/kit/shorts.png": {
+                "x": -1.27,
+                "y": 0.02,
+                "width": 55,
+                "height": 8
+            }
+        }
+    },
+    "character": {
+        "eyebrows": {
+            "../default": {
+                "x": 41.73,
+                "y": -15.51,
+                "rotation": -90.13
+            }
+        },
+        "eyes": {
+            "../default": {
+                "x": 36.29,
+                "y": -15.71,
+                "rotation": -90.13
+            }
+        },
+        "eyes_closed": {
+            "../default": {
+                "x": 36.29,
+                "y": -15.71,
+                "rotation": -90.13
+            }
+        },
+        "eyes_dead": {
+            "../default": {
+                "x": 36.29,
+                "y": -15.71,
+                "rotation": -90.13
+            }
+        },
+        "eyes_hit": {
+            "../default": {
+                "x": 48.98,
+                "y": -8.88,
+                "rotation": -90.13
+            }
+        },
+        "face_accessory_1": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_02D.png": {
+                "x": 9.072064483636991,
+                "y": -2.220929024473328,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_01.png": {
+                "x": -4.6142310308436665,
+                "y": -10.856564726562365,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_02.png": {
+                "x": 10.731920082034314,
+                "y": -5.224702845893112,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_03.png": {
+                "x": -4.7786283424268206,
+                "y": -9.856189146231651,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/bruise_01.png": {
+                "x": 15.726991205445369,
+                "y": -7.402708565929096,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/moustache_01.png": {
+                "x": 10.713390519040795,
+                "y": -13.391348491428339,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_02B.png": {
+                "x": 8.734194156147346,
+                "y": -4.220167567747511,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_02C.png": {
+                "x": 10.23078690600195,
+                "y": -5.723567095844634,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_06.png": {
+                "x": 9.230411325671234,
+                "y": -5.887964407427777,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_16.png": {
+                "x": 1.4724900330130142,
+                "y": -9.370371221244943,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_04.png": {
+                "x": -1.780337759035734,
+                "y": -10.612993993962096,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_06C.png": {
+                "x": 8.066016588104182,
+                "y": -4.8853199010162225,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_20.png": {
+                "x": -4.775224953305564,
+                "y": -8.356193007255785,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_14.png": {
+                "x": -6.285431259645205,
+                "y": -12.852778035062109,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_02E.png": {
+                "x": 11.236078492841148,
+                "y": -3.39250869462969,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_09.png": {
+                "x": -3.2786322034509645,
+                "y": -9.859592535352908,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_06B.png": {
+                "x": 7.729280723654953,
+                "y": -6.38455973129847,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/stitches_01.png": {
+                "x": 29.73149302138175,
+                "y": -5.43447867909304,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/spots_01.png": {
+                "x": 27.23944069770492,
+                "y": -1.9288153729472661,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/fur_01.png": {
+                "x": 27.231499456421982,
+                "y": -5.42880636389094,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_22.png": {
+                "x": 10.727004075525834,
+                "y": -7.391363935524897,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/pipe_01.png": {
+                "x": -0.8784713860481519,
+                "y": -53.865151593846925,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/freckles_01.png": {
+                "x": 18.722445631235413,
+                "y": -9.409510196139431,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_23.png": {
+                "x": 10.729273001606675,
+                "y": -6.39136650954099,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/glow_04.png": {
+                "x": 31.221278992993827,
+                "y": -9.937870485141882,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_24.png": {
+                "x": 14.234936307752449,
+                "y": -3.899314185864162,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_25.png": {
+                "x": 14.232667381671607,
+                "y": -4.899311611848068,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/beard_26.png": {
+                "x": 8.734950464840958,
+                "y": -3.886835092419544,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/moustache_15.png": {
+                "x": 2.7213523524524783,
+                "y": -9.873206091837947,
+                "rotation": -90.13
+            },
+            "../player/accessories/face/santa_beard_01.png": {
+                "x": -1.2752339623618902,
+                "y": -8.364134248538724,
+                "rotation": -90.13
+            }
+        },
+        "face_accessory_2": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            }
+        },
+        "face_accessory_3": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            }
+        },
+        "hair_front": {
+            "../default": {
+                "x": 50,
+                "y": 0,
+                "rotation": -90.13
+            },
+            "../player/hair/09B.png": {
+                "x": 48.001517765419415,
+                "y": 0.6712028028176169,
+                "rotation": -90.13
+            },
+            "../player/hair/01.png": {
+                "x": 48.99546472185441,
+                "y": -1.997725925886972,
+                "rotation": -90.13
+            },
+            "../player/hair/02.png": {
+                "x": 42.662903999316626,
+                "y": -1.6500235853803504,
+                "rotation": -90.13
+            },
+            "../player/hair/03.png": {
+                "x": 50.65985817241342,
+                "y": -3.001504895338944,
+                "rotation": -90.13
+            },
+            "../player/hair/04.png": {
+                "x": 51.657586672316484,
+                "y": -4.00377124740369,
+                "rotation": -90.13
+            },
+            "../player/hair/05.png": {
+                "x": 32.99777483219276,
+                "y": -0.9614256826096281,
+                "rotation": -90.13
+            },
+            "../player/hair/06.png": {
+                "x": 50.65834555502619,
+                "y": -3.668169845994882,
+                "rotation": -90.13
+            },
+            "../player/hair/07.png": {
+                "x": 49.662129672510346,
+                "y": -1.9992385432741993,
+                "rotation": -90.13
+            },
+            "../player/hair/08.png": {
+                "x": 37.67577411718852,
+                "y": 4.027973125599314,
+                "rotation": -90.13
+            },
+            "../player/hair/08B.png": {
+                "x": 33.67124656109122,
+                "y": 2.037053977954863,
+                "rotation": -90.13
+            },
+            "../player/hair/10.png": {
+                "x": 48.00000514803219,
+                "y": 0.004537852161679785,
+                "rotation": -90.13
+            },
+            "../player/hair/20.png": {
+                "x": 55.32953806177943,
+                "y": -1.6787633157376556,
+                "rotation": -90.13
+            },
+            "../player/hair/22.png": {
+                "x": 33.67124656109122,
+                "y": 2.037053977954863,
+                "rotation": -90.13
+            },
+            "../player/hair/23.png": {
+                "x": 50.65607662894535,
+                "y": -4.6681672719787874,
+                "rotation": -90.13
+            },
+            "../player/hair/54.png": {
+                "x": 36.52726186218735,
+                "y": 12.030599613898207,
+                "rotation": -90.13
+            },
+            "../player/hair/13.png": {
+                "x": 50,
+                "y": 0,
+                "rotation": -90.13
+            },
+            "../player/hair/14.png": {
+                "x": 47.993721205775586,
+                "y": -2.995804633123695,
+                "rotation": -90.13
+            },
+            "../player/hair/12.png": {
+                "x": 52.49091786063641,
+                "y": -4.005662019137728,
+                "rotation": -90.13
+            },
+            "../player/hair/24.png": {
+                "x": 48.49162571558205,
+                "y": -3.996849636664688,
+                "rotation": -90.13
+            },
+            "../player/hair/09.png": {
+                "x": 59.97841946207109,
+                "y": -9.522664807655516,
+                "rotation": -90.13
+            },
+            "../player/hair/21.png": {
+                "x": 48.99319579577357,
+                "y": -2.997723351870881,
+                "rotation": -90.13
+            },
+            "../player/hair/09D.png": {
+                "x": 47.496603045918974,
+                "y": -1.4943238237737608,
+                "rotation": -90.13
+            },
+            "../player/hair/15.png": {
+                "x": 47.0124868154929,
+                "y": 5.506792621154008,
+                "rotation": -90.13
+            },
+            "../player/hair/53.png": {
+                "x": 33.495504619103855,
+                "y": -1.9625575716339558,
+                "rotation": -90.13
+            },
+            "../player/hair/59.png": {
+                "x": 47.99319836978967,
+                "y": -2.995454425790041,
+                "rotation": -90.13
+            },
+            "../player/hair/52.png": {
+                "x": 52.493186786717246,
+                "y": -3.0056645931538206,
+                "rotation": -90.13
+            },
+            "../player/hair/39.png": {
+                "x": 50.33144170359394,
+                "y": -0.8340874970135358,
+                "rotation": -90.13
+            },
+            "../player/hair/45.png": {
+                "x": 49.49319450876553,
+                "y": -2.998857814911301,
+                "rotation": -90.13
+            },
+            "../player/hair/37B.png": {
+                "x": 52.48864893455557,
+                "y": -5.005659445121635,
+                "rotation": -90.13
+            },
+            "../player/hair/58.png": {
+                "x": 47.32388633870608,
+                "y": -4.160605472050706,
+                "rotation": -90.13
+            },
+            "../player/hair/09C.png": {
+                "x": 48.49886939798372,
+                "y": -0.49659532387069366,
+                "rotation": -90.13
+            },
+            "../player/hair/26.png": {
+                "x": 56.00452240806512,
+                "y": 1.9863812954827746,
+                "rotation": -90.13
+            },
+            "../player/hair/27.png": {
+                "x": 48.99206133273315,
+                "y": -3.4977220648628347,
+                "rotation": -90.13
+            },
+            "../player/hair/49.png": {
+                "x": 52.65531517221957,
+                "y": -5.0060375994684065,
+                "rotation": -90.13
+            },
+            "../player/hair/42.png": {
+                "x": 51.99621330849975,
+                "y": -1.671200228801525,
+                "rotation": -90.13
+            },
+            "../player/hair/37.png": {
+                "x": 61.48862576841073,
+                "y": -5.026079779849194,
+                "rotation": -90.13
+            },
+            "../player/hair/31.png": {
+                "x": 48.49262985126141,
+                "y": -3.2465882453264383,
+                "rotation": -90.13
+            },
+            "../player/hair/30.png": {
+                "x": 51.49545828681418,
+                "y": -2.003398241089074,
+                "rotation": -90.13
+            },
+            "../player/hair/34.png": {
+                "x": 52.49432124975767,
+                "y": -2.5056658801618674,
+                "rotation": -90.13
+            },
+            "../player/hair/29.png": {
+                "x": 49.49092558268469,
+                "y": -3.9988552408952085,
+                "rotation": -90.13
+            },
+            "../player/hair/35.png": {
+                "x": 34.505712212451535,
+                "y": 2.535161919212786,
+                "rotation": -90.13
+            },
+            "../player/hair/18.png": {
+                "x": 50,
+                "y": 0,
+                "rotation": -90.13
+            },
+            "../player/hair/51.png": {
+                "x": 50.490923008668595,
+                "y": -4.001124166976048,
+                "rotation": -90.13
+            },
+            "../player/hair/57.png": {
+                "x": 34.50457774941112,
+                "y": 2.0351632062208327,
+                "rotation": -90.13
+            },
+            "../player/hair/32.png": {
+                "x": 51.49772721289502,
+                "y": -1.003400815105167,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_01.png": {
+                "x": 50.99205618470097,
+                "y": -3.5022599170245146,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_02.png": {
+                "x": 53.48978082357989,
+                "y": -4.5079296582105215,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_03.png": {
+                "x": 49.48752219356343,
+                "y": -5.498851379871069,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_04.png": {
+                "x": 47.48866180463603,
+                "y": -4.994314814717436,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_01.png": {
+                "x": 47.01475574157374,
+                "y": 6.506790047137916,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_02.png": {
+                "x": 27.004597054531818,
+                "y": 2.0521801518271316,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_03.png": {
+                "x": 36.502303675298094,
+                "y": 1.0306279280752457,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_04.png": {
+                "x": 55.53175080804325,
+                "y": 13.987484870330078,
+                "rotation": -90.13
+            },
+            "../player/hair/36.png": {
+                "x": 33.00458161043526,
+                "y": 2.0385665953420924,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_05.png": {
+                "x": 49.006809352258614,
+                "y": 3.002261204032561,
+                "rotation": -90.13
+            },
+            "../player/hair/60.png": {
+                "x": 51.49772721289502,
+                "y": -1.003400815105167,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_01.png": {
+                "x": 59.5498919206256,
+                "y": 21.978388573877975,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_02.png": {
+                "x": 51.01020759334769,
+                "y": 4.497719490846742,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_03.png": {
+                "x": 57.94212179280984,
+                "y": -25.51808577123635,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_04.png": {
+                "x": 72.9908650933065,
+                "y": -4.052175003794946,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_05.png": {
+                "x": 61.54081106827005,
+                "y": 17.97386101778067,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_06.png": {
+                "x": 64.98634783327357,
+                "y": -6.034018447116041,
+                "rotation": -90.13
+            },
+            "../player/hair/61.png": {
+                "x": 51.48751704553124,
+                "y": -5.503389232032749,
+                "rotation": -90.13
+            },
+            "../player/hair/62.png": {
+                "x": 27.986443071869004,
+                "y": -5.950068182124964,
+                "rotation": -90.13
+            },
+            "../player/hair/63.png": {
+                "x": 50.99886296294349,
+                "y": -0.5022676390727935,
+                "rotation": -90.13
+            },
+            "../player/hair/64.png": {
+                "x": 29.994379165119756,
+                "y": -2.4546150433429696,
+                "rotation": -90.13
+            },
+            "../player/hair/36B.png": {
+                "x": 32.501179508322046,
+                "y": 0.5397049194066517,
+                "rotation": -90.13
+            },
+            "../player/hair/werewolf_04.png": {
+                "x": 46.48979884169255,
+                "y": -4.492047175644641,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_01.png": {
+                "x": 91.01918033702734,
+                "y": 8.406952151548772,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_06.png": {
+                "x": 80.02374650336603,
+                "y": 10.431905190405827,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_04.png": {
+                "x": 51.48071026728872,
+                "y": -8.50338150998447,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_02.png": {
+                "x": 73.49540165846014,
+                "y": -2.053314614867552,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_03.png": {
+                "x": 77.05551919054606,
+                "y": 24.43867593242305,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_05.png": {
+                "x": 84.03054298554417,
+                "y": 13.42282176403419,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_01.png": {
+                "x": 56.01700150150974,
+                "y": 7.486367138394264,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_02.png": {
+                "x": 31.007990147588703,
+                "y": 3.5431005864796328,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_04.png": {
+                "x": 42.99888355507223,
+                "y": -0.48411623042607427,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_03.png": {
+                "x": 54.48864378652338,
+                "y": -5.010197297283315,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_06.png": {
+                "x": 53.99431738873353,
+                "y": -2.5090692692831276,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_05.png": {
+                "x": 31.50231654537856,
+                "y": 1.0419725584794453,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_01.png": {
+                "x": 60.030604761930405,
+                "y": 13.477275989974347,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_02.png": {
+                "x": 71.98406088908007,
+                "y": -7.049898355665827,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_03.png": {
+                "x": 67.51129958512257,
+                "y": 4.960280923504837,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_04.png": {
+                "x": 73.98972805624999,
+                "y": -4.5544426428677385,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_05.png": {
+                "x": 55.49091013858813,
+                "y": -4.012468797380247,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_06.png": {
+                "x": 44.485266137563045,
+                "y": -6.487504175450776,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_02.png": {
+                "x": 71.00788718694498,
+                "y": 3.452343543246037,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_01.png": {
+                "x": 61.01698863142928,
+                "y": 7.475022507990064,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_03.png": {
+                "x": 74.00447607577544,
+                "y": 1.9455406260276566,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_04.png": {
+                "x": 74.01468624313922,
+                "y": 6.445529042955238,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_05.png": {
+                "x": 68.50789362198522,
+                "y": 3.4580158584481366,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_06.png": {
+                "x": 51.482979193369566,
+                "y": -7.5033840840005634,
+                "rotation": -90.13
+            }
+        },
+        "hair_back": {
+            "../default": {
+                "x": 50,
+                "y": 0,
+                "rotation": -90.13
+            },
+            "../player/hair/09B_back.png": {
+                "x": 29.319016664487297,
+                "y": -6.286425892227378,
+                "rotation": -90.13
+            },
+            "../player/hair/01_back.png": {
+                "x": 38.322775041810516,
+                "y": -4.640183850315094,
+                "rotation": -90.13
+            },
+            "../player/hair/02_back.png": {
+                "x": 35.33261477687577,
+                "y": -0.3000548928089836,
+                "rotation": -90.13
+            },
+            "../player/hair/03_back.png": {
+                "x": 35.317488603003504,
+                "y": -6.966704399368354,
+                "rotation": -90.13
+            },
+            "../player/hair/04_back.png": {
+                "x": 36.32353649853631,
+                "y": -4.302313522825445,
+                "rotation": -90.13
+            },
+            "../player/hair/05_back.png": {
+                "x": 31.663688622187273,
+                "y": -1.2917329231631416,
+                "rotation": -90.13
+            },
+            "../player/hair/06_back.png": {
+                "x": 33.656876695912565,
+                "y": -4.2962630532765385,
+                "rotation": -90.13
+            },
+            "../player/hair/07_back.png": {
+                "x": 33.98869655385331,
+                "y": -4.963684312626089,
+                "rotation": -90.13
+            },
+            "../player/hair/08_back.png": {
+                "x": 30.32960241218179,
+                "y": -1.6220401637166577,
+                "rotation": -90.13
+            },
+            "../player/hair/08B_back.png": {
+                "x": 30.32922425783498,
+                "y": -1.7887064013806429,
+                "rotation": -90.13
+            },
+            "../player/hair/10_back.png": {
+                "x": 31.3243056773104,
+                "y": -3.9576364170932785,
+                "rotation": -90.13
+            },
+            "../player/hair/20_back.png": {
+                "x": 39.652701554001126,
+                "y": -6.143205224065408,
+                "rotation": -90.13
+            },
+            "../player/hair/22_back.png": {
+                "x": 30.328089794794558,
+                "y": -2.2887051143725956,
+                "rotation": -90.13
+            },
+            "../player/hair/23_back.png": {
+                "x": 35.32391722689921,
+                "y": -4.133378359080618,
+                "rotation": -90.13
+            },
+            "../player/hair/54_back.png": {
+                "x": 33.49096676694219,
+                "y": -3.962552423601765,
+                "rotation": -90.13
+            },
+            "../player/hair/13_back.png": {
+                "x": 31.489837451933962,
+                "y": -4.458013284432038,
+                "rotation": -90.13
+            },
+            "../player/hair/14_back.png": {
+                "x": 50,
+                "y": 0,
+                "rotation": -90.13
+            },
+            "../player/hair/12_back.png": {
+                "x": 39.48868239676477,
+                "y": -4.976163406070716,
+                "rotation": -90.13
+            },
+            "../player/hair/24_back.png": {
+                "x": 33.994799107985884,
+                "y": -2.4664842197489376,
+                "rotation": -90.13
+            },
+            "../player/hair/09_back.png": {
+                "x": 59.97841946207109,
+                "y": -9.522664807655516,
+                "rotation": -90.13
+            },
+            "../player/hair/21_back.png": {
+                "x": 31.986432775804634,
+                "y": -5.959143886448324,
+                "rotation": -90.13
+            },
+            "../player/hair/09D_back.png": {
+                "x": 31.48983745193394,
+                "y": -4.4580132844320435,
+                "rotation": -90.13
+            },
+            "../player/hair/15_back.png": {
+                "x": 31.005721221507866,
+                "y": 2.543103160495726,
+                "rotation": -90.13
+            },
+            "../player/hair/53_back.png": {
+                "x": 28.500055341346,
+                "y": 0.048781910738057745,
+                "rotation": -90.13
+            },
+            "../player/hair/59_back.png": {
+                "x": 30.487571099869193,
+                "y": -5.45574178433511,
+                "rotation": -90.13
+            },
+            "../player/hair/52_back.png": {
+                "x": 36.99209222092627,
+                "y": -3.470494951892756,
+                "rotation": -90.13
+            },
+            "../player/hair/39_back.png": {
+                "x": 34.322785337874876,
+                "y": -4.631108145991741,
+                "rotation": -90.13
+            },
+            "../player/hair/45_back.png": {
+                "x": 30.993242128063244,
+                "y": -2.956882682415763,
+                "rotation": -90.13
+            },
+            "../player/hair/37B_back.png": {
+                "x": 36.48755565577264,
+                "y": -5.46935534082015,
+                "rotation": -90.13
+            },
+            "../player/hair/58_back.png": {
+                "x": 32.48870041487743,
+                "y": -4.960280923504838,
+                "rotation": -90.13
+            },
+            "../player/hair/09C_back.png": {
+                "x": 31.487568525853103,
+                "y": -5.458010710415951,
+                "rotation": -90.13
+            },
+            "../player/hair/26_back.png": {
+                "x": 36.98982329484543,
+                "y": -4.470492377876663,
+                "rotation": -90.13
+            },
+            "../player/hair/27_back.png": {
+                "x": 29.989841312958077,
+                "y": -4.454609895310783,
+                "rotation": -90.13
+            },
+            "../player/hair/49_back.png": {
+                "x": 37.32277761582659,
+                "y": -4.637914924234261,
+                "rotation": -90.13
+            },
+            "../player/hair/42_back.png": {
+                "x": 36.66594467818763,
+                "y": -0.3030801275834371,
+                "rotation": -90.13
+            },
+            "../player/hair/37_back.png": {
+                "x": 60.48862834242682,
+                "y": -5.023810853768355,
+                "rotation": -90.13
+            },
+            "../player/hair/31_back.png": {
+                "x": 31.739836808429917,
+                "y": -4.458580515952254,
+                "rotation": -90.13
+            },
+            "../player/hair/30_back.png": {
+                "x": 34.490964192926086,
+                "y": -3.96482134968261,
+                "rotation": -90.13
+            },
+            "../player/hair/34_back.png": {
+                "x": 34.4920986559665,
+                "y": -3.464822636690656,
+                "rotation": -90.13
+            },
+            "../player/hair/29_back.png": {
+                "x": 32.99210251699064,
+                "y": -3.4614192475693963,
+                "rotation": -90.13
+            },
+            "../player/hair/35_back.png": {
+                "x": 33.502311397346375,
+                "y": 1.0374347063177654,
+                "rotation": -90.13
+            },
+            "../player/hair/18_back.png": {
+                "x": 30.990973201982406,
+                "y": -3.95688010839967,
+                "rotation": -90.13
+            },
+            "../player/hair/51_back.png": {
+                "x": 33.990965479934125,
+                "y": -3.96368688664219,
+                "rotation": -90.13
+            },
+            "../player/hair/57_back.png": {
+                "x": 33.001178221314,
+                "y": 0.5385704563662318,
+                "rotation": -90.13
+            },
+            "../player/hair/32_back.png": {
+                "x": 34.48982972988566,
+                "y": -4.464820062674563,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_01_back.png": {
+                "x": 50.98638386949887,
+                "y": -6.002253481984282,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_02_back.png": {
+                "x": 44.48526613756305,
+                "y": -6.487504175450777,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_03_back.png": {
+                "x": 50.989787258620126,
+                "y": -4.502257343008421,
+                "rotation": -90.13
+            },
+            "../player/hair/zombie_04_back.png": {
+                "x": 45.49660819395116,
+                "y": -1.489785971612081,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_01_back.png": {
+                "x": 36.99889899916879,
+                "y": -0.4705026739410349,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_02_back.png": {
+                "x": 26.97963886764258,
+                "y": -8.947791533995845,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_03_back.png": {
+                "x": 31.490971914974363,
+                "y": -3.9580145714400903,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_04_back.png": {
+                "x": 38.51591208375095,
+                "y": 7.026074631817008,
+                "rotation": -90.13
+            },
+            "../player/hair/36_back.png": {
+                "x": 31.50118208233814,
+                "y": 0.5419738454874916,
+                "rotation": -90.13
+            },
+            "../player/hair/vampire_05_back.png": {
+                "x": 49.479580952280486,
+                "y": -8.998842370814742,
+                "rotation": -90.13
+            },
+            "../player/hair/60_back.png": {
+                "x": 48.49092815670078,
+                "y": -3.9965863148143685,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_01_back.png": {
+                "x": 67.4386939505357,
+                "y": -27.03963670798019,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_02_back.png": {
+                "x": 65.48861547234637,
+                "y": -5.035155484172554,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_03_back.png": {
+                "x": 62.040809781262,
+                "y": 17.972726554740248,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_04_back.png": {
+                "x": 73.50107397366223,
+                "y": 0.446678950092216,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_05_back.png": {
+                "x": 62.43757235757574,
+                "y": -27.528290790567944,
+                "rotation": -90.13
+            },
+            "../player/hair/pumpkin_06_back.png": {
+                "x": 59.99203301855613,
+                "y": -3.5226802517520737,
+                "rotation": -90.13
+            },
+            "../player/hair/61_back.png": {
+                "x": 36.990957757885845,
+                "y": -3.9704936648847102,
+                "rotation": -90.13
+            },
+            "../player/hair/62_back.png": {
+                "x": 29.496649378208645,
+                "y": -1.4534831543186426,
+                "rotation": -90.13
+            },
+            "../player/hair/63_back.png": {
+                "x": 29.996648091200598,
+                "y": -1.4546176173590626,
+                "rotation": -90.13
+            },
+            "../player/hair/64_back.png": {
+                "x": 30.995511054144085,
+                "y": -1.9568852564318562,
+                "rotation": -90.13
+            },
+            "../player/hair/36B_back.png": {
+                "x": 29.498918304289486,
+                "y": -0.45348572833473566,
+                "rotation": -90.13
+            },
+            "../player/hair/werewolf_04_back.png": {
+                "x": 41.995482739967066,
+                "y": -1.981843443321095,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_01_back.png": {
+                "x": 88.51691784598673,
+                "y": 7.412627040766966,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_06_back.png": {
+                "x": 79.02715246650338,
+                "y": 11.934170255462528,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_04_back.png": {
+                "x": 49.985251980474544,
+                "y": -6.499983268895396,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_02_back.png": {
+                "x": 77.97837312978142,
+                "y": -9.563505477110635,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_03_back.png": {
+                "x": 77.06346043182901,
+                "y": 27.93866692336672,
+                "rotation": -90.13
+            },
+            "../player/hair/snowman_05_back.png": {
+                "x": 88.02372591123729,
+                "y": 10.413753781759109,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_01_back.png": {
+                "x": 38.01704783379942,
+                "y": 7.527207807849382,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_02_back.png": {
+                "x": 36.0057083514274,
+                "y": 2.531758530091526,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_04_back.png": {
+                "x": 43.502285657185446,
+                "y": 1.0147454455093663,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_03_back.png": {
+                "x": 39.489816859805195,
+                "y": -4.476164693078762,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_06_back.png": {
+                "x": 44.99320609183795,
+                "y": -2.9886476475475217,
+                "rotation": -90.13
+            },
+            "../player/hair/elves_05_back.png": {
+                "x": 36.00343942534656,
+                "y": 1.5317611041076191,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_01_back.png": {
+                "x": 42.01930646381589,
+                "y": 8.51812952950993,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_02_back.png": {
+                "x": 47.99092944370883,
+                "y": -3.9954518517739483,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_03_back.png": {
+                "x": 40.501158916193305,
+                "y": 0.5215535107599325,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_04_back.png": {
+                "x": 57.4886360644751,
+                "y": -5.017004075525835,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_05_back.png": {
+                "x": 49.9943276847979,
+                "y": -2.4999935649597678,
+                "rotation": -90.13
+            },
+            "../player/hair/santa_06_back.png": {
+                "x": 43.481865322457885,
+                "y": -7.985231388345797,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_02_back.png": {
+                "x": 68.98293414808795,
+                "y": -7.543090290415261,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_01_back.png": {
+                "x": 61.98862448140269,
+                "y": -5.027214242889615,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_03_back.png": {
+                "x": 73.99540037145209,
+                "y": -2.0544490779079716,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_04_back.png": {
+                "x": 70.48179582402338,
+                "y": -8.046492392528474,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_05_back.png": {
+                "x": 72.47952174991035,
+                "y": -9.05102767067406,
+                "rotation": -90.13
+            },
+            "../player/hair/reindeer_06_back.png": {
+                "x": 51.48751704553124,
+                "y": -5.503389232032749,
+                "rotation": -90.13
+            }
+        },
+        "hair_accessory_1_front": {
+            "../default": {
+                "x": 0,
+                "y": 0,
+                "rotation": -90.13
+            }
+        },
+        "hair_accessory_1_back": {
+            "../default": {
+                "x": 0,
+                "y": 0,
+                "rotation": -90.13
+            }
+        },
+        "mouth_normal": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            }
+        },
+        "mouth_dead": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            }
+        },
+        "mouth_smile": {
+            "../default": {
+                "x": 5.71,
+                "y": -14.88,
+                "rotation": -90.13
+            }
+        },
+        "nose": {
+            "../default": {
+                "x": 22.6,
+                "y": -16.21,
+                "rotation": -90.13
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "animal-cup",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rm -rf .next && next dev -p 13000",
+    "lan": "node script/lan-server.mjs",
+    "dev:lan": "rm -rf .next && node script/lan-dev.mjs",
+    "prebuild": "rm -rf .next",
+    "build": "node script/stamp-sw-version.mjs && node script/safe-build.mjs",
+    "build:worker": "rm -rf .next .open-next && node script/stamp-sw-version.mjs && opennextjs-cloudflare build",
+    "start": "next start -p 13000"
+  },
+  "dependencies": {
+    "next": "15.5.19",
+    "qrcode": "^1.5.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "@opennextjs/cloudflare": "^1.19.10",
+    "@types/react": "19.2.17",
+    "sharp": "^0.34.5",
+    "typescript": "5.8.2",
+    "wrangler": "^4.86.0",
+    "ws": "^8.18.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "workerd"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  background: #05070a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---- buttons: kill the focus outline that sticks after a click/tap. The
+   browser draws it in the system accent colour, which shows up as a red box on
+   some setups ("点按按钮老是有红框"). Transparent tap highlight too. A subtle
+   green ring is kept ONLY for keyboard focus-visible (accessibility). ---- */
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus,
+[role="button"]:focus {
+  outline: none;
+}
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(93, 144, 56, 0.6);
+  outline-offset: 2px;
+}
+
+/* ---- in-game pinch-zoom on mobile: the match canvas owns the two-finger
+   gesture (TouchControls drives window.__matchZoom). iOS Safari IGNORES the
+   viewport user-scalable:false, so without touch-action:none it page-zooms the
+   whole page instead of letting the game zoom ("手机端不能双指放大缩小"). The only
+   canvases in the app are the game's, so scoping to `canvas` is safe. ---- */
+canvas {
+  touch-action: none;
+}
+
+/* ---- language switcher (hand-drawn globe, fan-out menu) ---- */
+.lang-switcher {
+  position: relative;
+  margin-left: 10px;
+  align-self: center;
+}
+/* paper-craft: white-edged paper tag */
+.lang-switcher__toggle {
+  display: inline-grid;
+  place-items: center;
+  padding: 9px;
+  border: 3px solid var(--ak-edge, #fffef8);
+  border-radius: 12px;
+  background: var(--ak-card, #fffef8);
+  box-shadow: 0 3px 7px var(--ak-shadow, rgba(120, 90, 50, 0.3));
+  color: var(--ak-ink, #6a4a2a);
+  cursor: pointer;
+  transform: none;
+  transition: transform 120ms ease;
+}
+.lang-switcher__toggle:hover { transform: rotate(0deg) translateY(-2px); }
+.lang-switcher__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  box-shadow: 0 7px 16px var(--ak-shadow, rgba(120, 90, 50, 0.3));
+}
+.lang-switcher__menu button {
+  border: 0;
+  border-radius: 8px;
+  padding: 7px 18px;
+  background: transparent;
+  color: var(--ak-ink, #6a4a2a);
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+}
+.lang-switcher__menu button:hover { background: rgba(126, 201, 122, 0.25); }
+.lang-switcher__menu button.is-active {
+  background: var(--ak-green, #7ec97a);
+  color: #fff;
+}
+

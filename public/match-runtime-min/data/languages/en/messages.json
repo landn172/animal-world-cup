@@ -1,0 +1,26 @@
+{
+    "languageName": {
+        "message": "English"
+    },
+    "ai.level0": {
+        "message": "AI 0"
+    },
+    "ai.level1": {
+        "message": "AI 1"
+    },
+    "ai.level2": {
+        "message": "AI 2"
+    },
+    "ai.level3": {
+        "message": "AI 3"
+    },
+    "users.name": {
+        "message": "Player {id}"
+    },
+    "match.selectTeam.playerPlay": {
+        "message": "Play |"
+    },
+    "match.selectTeam.playerLeave": {
+        "message": "Leave |"
+    }
+}

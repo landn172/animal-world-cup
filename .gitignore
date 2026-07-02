@@ -1,0 +1,70 @@
+# Environment files (contain secrets)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+.next
+
+# cloudflare / opennext build artifacts
+.open-next/
+.wrangler/
+
+# file-convention icons the HappySeeds platform removed (they broke the Next 15.5
+# build — the tab icon + favicon now come from layout metadata + app/manifest.js).
+# Ignored so a stray local copy can't be re-committed and re-conflict with the
+# platform's removal.
+app/favicon.ico
+app/icon.png
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Temporary/paste files
+attachements/
+assets/
+
+# Unused local working copies + asset-pipeline intermediates — never tracked,
+# never shipped (deploy is git-only). web/ is a stale full project duplicate
+# (the live app is the repo root); the rest are asset/rig generation scratch.
+/web/
+/assets-src/
+/spine-export/
+/script/gen-cover-candidates.mjs
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.superset
+.cursorrules
+.examples
+.skills
+# Internal AI-dev instructions (private skill system) + platform project id
+# (project_id/user_id) — must not ship to remixers; kept on disk, out of git.
+AGENTS.md
+.project
+
+# Engine source + build pipeline — LOCAL ONLY, never tracked / never remixed.
+# The deploy serves the pre-built, committed public/match-runtime-min/ output;
+# regenerate locally with `npm run build:match` when the engine source changes.
+match-runtime-source/
+match-runtime-assets-source/
+script/build-match-runtime.mjs
+script/build-match-runtime-assets.mjs

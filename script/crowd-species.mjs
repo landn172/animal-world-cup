@@ -1,0 +1,25 @@
+// Crowd animal roster (id, prompt-name). Pure data — imported by both the
+// sheet generator and (historically) the head generator without side effects.
+export const SPECIES = [
+  ["panda", "giant panda"], ["redpanda", "red panda"], ["koala", "koala"], ["fox", "red fox"], ["wolfgrey", "grey wolf"],
+  ["rabbit", "white rabbit"], ["bear", "brown bear"], ["polarbear", "polar bear"], ["tiger", "orange tiger"], ["snowleopard", "snow leopard"],
+  ["deer", "deer with small antlers"], ["owl", "round owl"], ["cat", "tabby cat"], ["shibadog", "shiba dog"], ["hedgehog", "hedgehog"],
+  ["raccoon", "raccoon"], ["sloth", "sloth"], ["otter", "otter"], ["hippo", "hippo"], ["elephant", "elephant"],
+  ["giraffe", "giraffe"], ["zebra", "zebra"], ["monkey", "monkey"], ["frog", "green frog"], ["duck", "yellow duck"],
+  ["chicken", "chicken"], ["pig", "pink pig"], ["cow", "spotted cow"], ["sheep", "fluffy sheep"], ["goat", "goat"],
+  ["horse", "horse"], ["kangaroo", "kangaroo"], ["llama", "llama"], ["alpaca", "alpaca"], ["capybara", "capybara"],
+  ["squirrel", "squirrel"], ["chipmunk", "chipmunk"], ["beaver", "beaver"], ["badger", "badger"], ["mole", "mole"],
+  ["bat", "cute bat"], ["seal", "seal"], ["walrus", "walrus"], ["narwhal", "narwhal"], ["dolphin", "dolphin"],
+  ["whale", "blue whale"], ["shark", "friendly shark"], ["octopus", "octopus"], ["crab", "red crab"], ["turtle", "turtle"],
+  ["snail", "snail"], ["bee", "bee"], ["butterfly", "butterfly"], ["ladybug", "ladybug"], ["snake", "snake"],
+  ["lizard", "lizard"], ["chameleon", "chameleon"], ["crocodile", "crocodile"], ["dino", "green dinosaur"], ["dragon", "cute dragon"],
+  ["penguin", "penguin"], ["flamingo", "flamingo"], ["peacock", "peacock"], ["parrot", "parrot"], ["toucan", "toucan"],
+  ["eagle", "eagle"], ["hawk", "hawk"], ["falcon", "falcon"], ["swan", "swan"], ["goose", "goose"],
+  ["pelican", "pelican"], ["pigeon", "pigeon"], ["sparrow", "sparrow"], ["robin", "robin"], ["crow", "crow"],
+  ["mouse", "mouse"], ["hamster", "hamster"], ["guineapig", "guinea pig"], ["ferret", "ferret"], ["weasel", "weasel"],
+  ["skunk", "skunk"], ["porcupine", "porcupine"], ["armadillo", "armadillo"], ["anteater", "anteater"], ["aardvark", "aardvark"],
+  ["meerkat", "meerkat"], ["mongoose", "mongoose"], ["lemur", "ring-tailed lemur"], ["gorilla", "gorilla"], ["orangutan", "orangutan"],
+  ["chimp", "chimpanzee"], ["panther", "black panther"], ["lynx", "lynx"], ["cheetah", "cheetah"], ["jackal", "jackal"],
+  ["hyena", "hyena"], ["bison", "bison"], ["rhino", "rhino"], ["camel", "camel"], ["moose", "moose"],
+  ["reindeer", "reindeer"], ["boar", "wild boar"], ["wombat", "wombat"], ["civet", "civet"], ["okapi", "okapi"],
+];

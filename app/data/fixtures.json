@@ -1,0 +1,129 @@
+{
+  "updatedAt": "2026-06-07",
+  "source": "manual seed — replace via script/sync-fixtures.mjs (real WC2026 schedule)",
+  "currentRound": 1,
+  "rounds": [
+    {
+      "id": "r0",
+      "label": "小组赛 · 第 0 轮 · 昨日",
+      "matches": [
+        {
+          "id": "r0-por-usa",
+          "home": "portugal",
+          "away": "usa",
+          "when": "FT",
+          "status": "finished",
+          "score": [
+            2,
+            1
+          ]
+        },
+        {
+          "id": "r0-fra-ger",
+          "home": "france",
+          "away": "germany",
+          "when": "FT",
+          "status": "finished",
+          "score": [
+            3,
+            3
+          ]
+        },
+        {
+          "id": "r0-eng-esp",
+          "home": "england",
+          "away": "spain",
+          "when": "FT",
+          "status": "finished",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "r0-bra-arg",
+          "home": "brazil",
+          "away": "argentina",
+          "when": "FT",
+          "status": "finished",
+          "score": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r1",
+      "label": "小组赛 · 第 1 轮 · 今日",
+      "matches": [
+        {
+          "id": "r1-eng-fra",
+          "home": "england",
+          "away": "france",
+          "when": "19:00 · Daisy Park",
+          "status": "scheduled"
+        },
+        {
+          "id": "r1-ger-esp",
+          "home": "germany",
+          "away": "spain",
+          "when": "21:00 · Acorn Arena",
+          "status": "scheduled"
+        },
+        {
+          "id": "r1-bra-usa",
+          "home": "brazil",
+          "away": "usa",
+          "when": "21:30 · Daisy Park",
+          "status": "scheduled"
+        },
+        {
+          "id": "r1-por-arg",
+          "home": "portugal",
+          "away": "argentina",
+          "when": "22:00 · Acorn Arena",
+          "status": "scheduled"
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "label": "小组赛 · 第 2 轮 · 明日",
+      "matches": [
+        {
+          "id": "r2-eng-bra",
+          "home": "england",
+          "away": "brazil",
+          "when": "19:00 · Daisy Park",
+          "status": "scheduled"
+        },
+        {
+          "id": "r2-fra-arg",
+          "home": "france",
+          "away": "argentina",
+          "when": "21:00 · Acorn Arena",
+          "status": "scheduled"
+        },
+        {
+          "id": "r2-jpn-kor",
+          "home": null,
+          "away": null,
+          "homeUpcoming": "japan",
+          "awayUpcoming": "korea",
+          "when": "—",
+          "status": "locked"
+        },
+        {
+          "id": "r2-ita-ned",
+          "home": null,
+          "away": null,
+          "homeUpcoming": "italy",
+          "awayUpcoming": "netherlands",
+          "when": "—",
+          "status": "locked"
+        }
+      ]
+    }
+  ]
+}

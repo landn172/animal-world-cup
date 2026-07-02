@@ -1,0 +1,163 @@
+@font-face {
+  font-family: "CupDigits";
+  src: url("../fonts/cup-digits.ttf") format("truetype");
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: "CupRound", "Noto Sans CJK", Arial, Helvetica, sans-serif;
+  user-select: none;
+}
+
+body * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* dropped the engine's global HUD text-halo: it bled onto our React paper
+     chrome (dark text on white buttons → a weird dark 底色). The engine HUD is
+     hidden and the game is canvas/sprite-based, so it isn't needed. */
+}
+
+canvas {
+  /* Fill the viewport via CSS so the match is NEVER half-black, regardless of
+     when (or whether) the JS resize fires. CRITICAL: the engine writes an
+     INLINE style="width:Npx;height:Npx" on the canvas (its display size). An
+     element-selector rule loses to inline styles, so this MUST use !important
+     to win — otherwise a stale inline size (e.g. portrait width in landscape)
+     leaves a black gap and no amount of CSS here helps. The PIXI buffer keeps
+     the viewport aspect, so 100%/100% never distorts. This was the real reason
+     the half-black canvas kept coming back. Lives in the SOURCE so build:match
+     can't overwrite it. */
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+  display: block;
+}
+
+body.loading > canvas {
+  opacity: 0;
+}
+
+body.loaded {
+  background-image: none;
+}
+
+.gui {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gui.no-scale .scalable {
+  transform: none !important;
+}
+
+.pattern {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+svg .normal {
+  fill: #7fc2d9;
+}
+
+svg .progress,
+.focused > svg .normal {
+  fill: url("#pattern-1");
+}
+
+svg .light {
+  fill: #87cee6;
+}
+
+.focused > svg .light {
+  fill: url("#pattern-1-light");
+}
+
+svg .dark {
+  fill: #2b4751;
+}
+
+svg .shadow {
+  opacity: 0.25;
+}
+
+svg .flag-shadow {
+  opacity: 0.125;
+}
+
+svg .background {
+  fill: #578fa2;
+}
+
+i.green {
+  color: #8aff7b !important;
+  font-style: normal;
+}
+
+i.yellow {
+  color: #ffc514 !important;
+  font-style: normal;
+}
+
+dl#debug {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  display: none;
+  width: 100%;
+  padding: 0 6px;
+  color: #fff;
+  font-family: Consolas, monospace;
+}
+
+dl#debug dt {
+  position: absolute;
+  top: -75%;
+  display: inline;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+dl#debug dd {
+  display: inline;
+  margin-right: 18px;
+  font-weight: 400;
+  white-space: pre;
+}
+
+dl#debug small {
+  font-size: 15px;
+}
+
+dl#debug del {
+  padding: 0 3px;
+  border-radius: 4px;
+  background-color: rgba(255, 31, 31, 0.75);
+  color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.recording dl#debug {
+  display: none !important;
+}

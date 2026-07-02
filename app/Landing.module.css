@@ -1,0 +1,432 @@
+/* pre-match landing: pick both teams + formations. Same visual language as
+   the match HUD — cream cards, grass-green accents, on the curtain green. */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  /* scale-to-fit (JS sets --fit-scale on .wrap): the whole page always fits the
+     viewport with NO scrolling, on any screen — never scroll, never clip. */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* reserve a thin bottom strip for the global "Built with HappySeeds" watermark
+     (bottom-centre, fixed) so it never sits on top of the CTA buttons. The fit
+     JS scales the content into innerHeight-54 to match this. */
+  padding-bottom: 48px;
+  background: radial-gradient(120% 100% at 50% 45%, #6aa843 0%, #5d9038 55%, #4f8a2f 100%);
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+}
+/* entering (GTA-online style dive): the camera punches THROUGH the cloud
+   layer — banks fly OUTWARD past the screen edges while the sky rushes in */
+.entering .bankL { transform: translateX(-140%) scale(1.7); }
+.entering .bankR { transform: translateX(140%) scale(1.7); }
+.entering .ring::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border: 3px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+/* the engine's diagonal stripe tile drifting slowly across the grass —
+   same motif as the loading screen, kept storybook-subtle */
+.pattern {
+  position: fixed;
+  inset: 0;
+  background: url("/match-runtime-min/images/interface/pattern.png") repeat;
+  background-size: 100px 100px;
+  opacity: 0.4;
+  animation: landingPan 2.4s linear infinite;
+}
+@keyframes landingPan {
+  from { background-position: 0 0; }
+  to { background-position: 100px 0; }
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1060px;
+  margin: 0;
+  padding: 26px 18px 34px;
+  display: grid;
+  gap: 16px;
+  /* shrink-to-fit when the content is taller/wider than the viewport (JS) */
+  transform: scale(var(--fit-scale, 1));
+  transform-origin: center center;
+  /* hidden until the fit + formation pick land (JS sets .ready), so the page
+     never appears unscaled then snaps — it fades in already settled */
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.wrap.ready { opacity: 1; }
+
+/* Hero logo (owner pick: lab #3 colorway c2). Titan One chunky cartoon face,
+   cream fill, with a stacked 3D extrude in the brand greens. Offsets are in em
+   so the depth stays proportional across the clamp range and on mobile. CJK
+   (动物杯) falls back to ZCOOL KuaiLe. */
+.title {
+  margin: 2px 0 4px;
+  text-align: center;
+  font-family: "Titan One", "ZCOOL KuaiLe", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: clamp(48px, 10vmin, 86px);
+  font-weight: 400;
+  line-height: 1.04;
+  color: #fff7e2;
+  text-shadow:
+    0 0.017em 0 #4f8a2f, 0 0.034em 0 #4f8a2f,
+    0 0.052em 0 #3f6a26, 0 0.069em 0 #3f6a26,
+    0 0.086em 0 #2f5220, 0 0.103em 0 #2f5220,
+    0 0.121em 0 #21401a,
+    0 0.155em 0.241em rgba(0, 0, 0, 0.45);
+}
+
+.duel {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.panel {
+  background: var(--ak-card, #fffef8);
+  border: 4px solid var(--ak-edge, #fffef8);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(60, 50, 30, 0.32);
+  padding: 18px 20px 20px;
+  display: grid;
+  gap: 15px;
+  align-content: start;
+}
+.side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #4f8a2f;
+}
+.sideTag {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #fff7e2;
+  background: #5d9038;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.sideTagBlue { background: #3f7fb1; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.card {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 12px 6px 10px;
+  border-radius: 14px;
+  border: 2px solid rgba(120, 90, 50, 0.16);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 130ms ease, border-color 130ms ease, background 130ms ease;
+}
+.card:hover { transform: translateY(-2px); }
+.cardOn { border-color: #5d9038; background: #f1f8e8; }
+.cardOff { opacity: 0.38; cursor: not-allowed; }
+.cardPic { width: 56px; height: 56px; object-fit: contain; }
+.card b { font-size: 12.5px; color: #4a6b35; font-weight: 800; }
+
+.formRow {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+.pills { justify-content: center; }
+.formLabel { font-size: 12px; font-weight: 900; color: #6b8a55; letter-spacing: 0.06em; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  border: 2px solid rgba(120, 90, 50, 0.2);
+  background: #fff;
+  color: #4a6b35;
+  border-radius: 999px;
+  padding: 4px 13px;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.pill:hover { border-color: #5d9038; }
+.pillOn { background: #5d9038; border-color: #5d9038; color: #fff7e2; }
+
+.preview { display: grid; justify-items: center; gap: 2px; }
+.preview :global(.form-diagram) {
+  display: block;
+  filter: drop-shadow(0 5px 12px rgba(60, 80, 40, 0.3));
+}
+.preview :global(.form-diagram) :global(.fd-dot) {
+  transition: cx 460ms cubic-bezier(0.3, 1.35, 0.5, 1), cy 460ms cubic-bezier(0.3, 1.35, 0.5, 1);
+}
+
+.vs {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: clamp(54px, 9vmin, 76px);
+  height: clamp(54px, 9vmin, 76px);
+  border-radius: 50%;
+  background: #5d9038;
+  border: 3px solid rgba(255, 247, 226, 0.85);
+  color: #fff7e2;
+  font-size: clamp(19px, 3.4vmin, 27px);
+  font-weight: 900;
+  font-style: italic;
+  transform: rotate(-6deg);
+  box-shadow: 0 6px 16px rgba(40, 60, 25, 0.35);
+}
+
+.actions {
+  /* Play + Watch are ALWAYS equal width (two equal columns) — only colour and
+     label differ. Equal columns survive any label length / locale. */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.kick {
+  border: 0;
+  border-radius: 16px;
+  padding: 13px 0;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: inherit;
+  color: #fff7e2;
+  background: #5d9038;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #41702a, 0 10px 20px rgba(40, 60, 25, 0.35);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.kick:hover { background: #6aa342; transform: translateY(-2px); }
+.kick:active { transform: translateY(1px); box-shadow: 0 3px 0 #41702a; }
+.lucky {
+  border: 2px solid rgba(120, 90, 50, 0.22);
+  border-radius: 16px;
+  padding: 11px 0;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: inherit;
+  color: #4f8a2f;
+  background: var(--ak-card, #fffef8);
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(120, 90, 50, 0.25), 0 8px 16px rgba(70, 90, 120, 0.25);
+  transition: background 120ms ease, transform 120ms ease;
+}
+.lucky:hover { background: #f4eed9; transform: translateY(-2px); }
+
+.playHint {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(70, 60, 40, 0.6);
+}
+
+/* portrait / narrow: stack the two panels. Fitting is handled by scale-to-fit
+   (no scrolling), so no sticky CTA is needed. */
+@media (max-width: 720px) {
+  .duel { grid-template-columns: 1fr; }
+  .vs { justify-self: center; }
+}
+/* phone-ish (narrow OR short): compact so the primary CTA isn't buried — drop
+   the big formation diagram (pills still pick it), shrink cards + spacing, and
+   keep the title clear of the language globe */
+@media (max-width: 720px), (max-height: 560px) {
+  .wrap { padding: 12px 12px 18px; gap: 9px; }
+  .title { font-size: clamp(28px, 8vmin, 40px); padding: 0 56px; line-height: 1.2; }
+  .controlQ { margin-top: -2px; font-size: 12px; }
+  .panel { padding: 10px 11px 12px; gap: 8px; }
+  .grid { gap: 7px; }
+  .card { padding: 6px 3px 6px; }
+  .cardPic { width: 34px; height: 34px; }
+  .card b { font-size: 10.5px; }
+  .formRow { gap: 6px; }
+  .preview { display: none; }
+  .vs { width: 42px; height: 42px; font-size: 17px; }
+}
+/* very short (landscape phones): ultra-compact so difficulty + CTA fit too */
+@media (max-height: 440px) {
+  .wrap { padding: 8px 12px 12px; gap: 7px; }
+  .title { font-size: clamp(24px, 7vmin, 30px); padding: 0 52px; }
+  .panel { padding: 8px 10px 10px; gap: 7px; }
+  .cardPic { width: 30px; height: 30px; }
+  .card { padding: 5px 3px 5px; }
+  .card b { font-size: 10px; }
+  .pill { padding: 3px 10px; font-size: 11px; }
+  .diffRow { gap: 8px; margin-top: 0; }
+  .actions { gap: 10px; }
+  .kick, .lucky { width: 168px; padding: 9px 0; font-size: 14px; }
+}
+
+/* language switcher pinned top-right, cream/green like the HUD */
+.lang { position: fixed; top: 14px; right: 14px; z-index: 20; }
+.lang :global(.lang-switcher__toggle) {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(120, 90, 50, 0.2);
+  background: var(--ak-card, #fffef8);
+  color: #4f8a2f;
+  box-shadow: 0 4px 10px rgba(70, 90, 120, 0.25);
+  transform: none;
+}
+.lang :global(.lang-switcher__menu) {
+  background: var(--ak-card, #fffef8);
+  border: 1px solid rgba(120, 90, 50, 0.2);
+  box-shadow: 0 6px 14px rgba(70, 90, 120, 0.3);
+}
+.lang :global(.lang-switcher__menu) button { color: #4f8a2f; }
+.lang :global(.lang-switcher__menu) button:hover { background: #f4eed9; }
+.lang :global(.lang-switcher__menu) button.is-active { background: #5d9038; color: #fff7e2; }
+
+
+/* ===== 2026-06-15 redesign v2: segmented control + stable tags ===== */
+
+/* "Who do you control?" caption + segmented control */
+.controlQ {
+  margin: -4px 0 0; text-align: center;
+  font-size: 13px; font-weight: 800; color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 0 rgba(70, 100, 60, 0.6);
+}
+.seg {
+  justify-self: center;
+  display: inline-flex; gap: 4px; padding: 5px;
+  border-radius: 16px;
+  background: rgba(255, 254, 248, 0.9);
+  box-shadow: 0 4px 12px rgba(40, 60, 25, 0.28);
+}
+.segBtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: 0; border-radius: 12px;
+  padding: 9px 18px; min-height: 40px;
+  max-width: 30vw; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font-family: inherit; font-size: 14px; font-weight: 900;
+  color: #6b7a55; background: transparent; cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.segBtn:hover { background: rgba(93, 144, 56, 0.1); }
+.segOn { background: #5d9038; color: #fff7e2; box-shadow: 0 2px 0 #41702a; }
+.segOn:hover { background: #5d9038; }
+
+/* panel header: fixed-size role tag (YOU/AI — colour change only, no reflow) */
+.head { display: flex; align-items: center; gap: 9px; width: 100%; }
+.tag {
+  flex-shrink: 0;
+  min-width: 44px; text-align: center;
+  border-radius: 999px; padding: 3px 9px;
+  font-size: 11px; font-weight: 900; letter-spacing: 0.06em;
+}
+.tagYou { background: #5d9038; color: #fff7e2; }
+.tagAi  { background: rgba(120, 90, 50, 0.16); color: #8a7a62; }
+.headName {
+  flex: 1; min-width: 0;
+  font-size: 13px; font-weight: 900; color: #4f8a2f;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* YOU panel highlight — COLOUR ONLY, same 4px border so size never changes */
+.panelYou {
+  border-color: #7cb24a;
+  background: linear-gradient(180deg, #f3f9ec 0%, var(--ak-card, #fffef8) 60%);
+}
+
+/* selected team card gets a clear check badge (affordance) */
+.card { position: relative; }
+.cardCheck {
+  position: absolute; top: 5px; right: 5px;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #5d9038; color: #fff; font-size: 11px; font-weight: 900;
+  box-shadow: 0 1px 3px rgba(40, 60, 25, 0.4);
+}
+
+.diffRow { display: flex; align-items: center; justify-content: center; gap: 12px; }
+/* settings row: Your side + Difficulty groups, side by side (wrap on mobile) */
+.settings { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 26px; }
+.setGroup { display: flex; align-items: center; gap: 10px; }
+/* side (Home/Away) + difficulty (Easy/Normal/Hard) pills: uniform size so each
+   row reads tidy — only the selected colour differs, not the width */
+.setGroup .pill { box-sizing: border-box; min-width: 78px; text-align: center; }
+
+/* v3: static YOUR TEAM / OPPONENT label pills (no toggle → no shift) */
+.roleLabel {
+  flex-shrink: 0; border-radius: 999px; padding: 3px 11px;
+  font-size: 11px; font-weight: 900; letter-spacing: 0.06em;
+}
+.roleMine { background: #5d9038; color: #fff7e2; }
+.roleOpp  { background: rgba(120, 90, 50, 0.16); color: #8a7a62; }
+
+/* Play (you) and Watch (AI) are PARALLEL choices — two side-by-side buttons */
+.play, .watch {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  box-sizing: border-box; width: 100%; white-space: nowrap;
+  border: 2px solid transparent;          /* identical box for both — only colour differs */
+  border-radius: 16px; padding: 13px 16px;
+  font-size: 16px; font-weight: 900; font-family: inherit; cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.play {
+  color: #fff7e2; background: #5d9038; border-color: #41702a;
+  box-shadow: 0 5px 0 #41702a, 0 10px 20px rgba(40, 60, 25, 0.35);
+}
+.play:hover { background: #6aa342; transform: translateY(-2px); }
+.play:active { transform: translateY(1px); box-shadow: 0 3px 0 #41702a; }
+.watch {
+  color: #4f8a2f; background: var(--ak-card, #fffef8); border-color: rgba(120, 90, 50, 0.22);
+  box-shadow: 0 5px 0 rgba(120, 90, 50, 0.25), 0 10px 20px rgba(70, 90, 120, 0.25);
+}
+.watch:hover { background: #f4eed9; transform: translateY(-2px); }
+.watch:active { transform: translateY(1px); box-shadow: 0 3px 0 rgba(120, 90, 50, 0.25); }
+
+/* LAN versus: a full-width third action under the Play/Watch pair. Storybook
+   blue to read as the "two-player / 联机" path, distinct from the green Play. */
+.actionsLan {
+  max-width: 400px;
+  margin: 10px auto 0;
+}
+.lan {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  box-sizing: border-box; width: 100%; white-space: nowrap;
+  border: 2px solid #2f5aa8; border-radius: 16px; padding: 12px 16px;
+  font-size: 16px; font-weight: 900; font-family: inherit; cursor: pointer;
+  color: #fff7e2; background: #3a6fce;
+  box-shadow: 0 5px 0 #2f5aa8, 0 10px 20px rgba(30, 50, 90, 0.3);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.lan:hover { background: #4880e0; transform: translateY(-2px); }
+.lan:active { transform: translateY(1px); box-shadow: 0 3px 0 #2f5aa8; }
+
+@media (max-width: 720px), (max-height: 560px) {
+  .segBtn { padding: 8px 12px; font-size: 13px; max-width: 38vw; }
+}
+
+/* ===== selection motion — same spring as the formation diagram ===== */
+@keyframes ac-pick {
+  0%   { transform: scale(0.86); }
+  55%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+@keyframes ac-check-in {
+  0%   { transform: scale(0) rotate(-35deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+/* team card: springy pop when it becomes the picked team */
+.cardOn { animation: ac-pick 0.36s cubic-bezier(0.3, 1.35, 0.5, 1); }
+/* the ✓ badge bounces in */
+.cardCheck { animation: ac-check-in 0.4s cubic-bezier(0.3, 1.45, 0.5, 1); }
+/* formation / difficulty / side pills pop on select (same spring) */
+.pillOn { animation: ac-pick 0.3s cubic-bezier(0.3, 1.35, 0.5, 1); }
