@@ -40,7 +40,12 @@ export default function LobbyClient({ red, blue, side, ai, time }) {
       onMessage(msg) {
         if (msg.t === "hosted") {
           setRoom(msg.room);
-          const url = `http://${msg.ip}:${msg.port}/pad?room=${msg.room}`;
+          // local relay (script/lan-server.mjs) sends ip/port for the LAN join URL;
+          // the deployed Durable Object omits them since phones join over the
+          // same public origin the big screen is already on.
+          const url = msg.ip
+            ? `http://${msg.ip}:${msg.port}/pad?room=${msg.room}`
+            : `${window.location.origin}/pad?room=${msg.room}`;
           setJoin(url);
           QRCode.toDataURL(url, { margin: 1, width: 320, color: { dark: "#1d3d16", light: "#ffffff" } })
             .then(setQr)
