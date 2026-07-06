@@ -51,7 +51,7 @@ export class LanRelay extends DurableObject {
   }
 
   async fetch(request) {
-    if (request.headers.get("Upgrade") !== "websocket") {
+    if ((request.headers.get("Upgrade") || "").toLowerCase() !== "websocket") {
       return new Response("expected websocket", { status: 400 });
     }
 

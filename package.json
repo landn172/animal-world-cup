@@ -11,6 +11,7 @@
     "build": "node script/stamp-sw-version.mjs && node script/safe-build.mjs",
     "build:worker": "rm -rf .next .open-next && node script/stamp-sw-version.mjs && opennextjs-cloudflare build",
     "start": "next start -p 13000",
+    "pretest": "test -f .open-next/worker.js || pnpm run build:worker",
     "test": "vitest run --max-workers=1 --no-isolate"
   },
   "dependencies": {

@@ -24,7 +24,7 @@ Reimplement the relay's production path as a Cloudflare Durable Object, reachabl
 
 Three scope decisions, confirmed with the project owner:
 
-1. **Security posture stays as-is.** No auth beyond the 4-character room code — rooms live for minutes (25s host-grace timeout) and the code space is ~1,048,576 combinations, matching the current casual, unauthenticated design. Moving from LAN-only to internet-reachable does widen who could theoretically join, but this is accepted as negligible risk for a casual hobby feature.
+1. **Security posture stays as-is.** No auth beyond the 4-character room code — rooms live for minutes (25s host-grace timeout) and the code space is ~1,048,576 combinations, matching the current casual, unauthenticated design. Moving from LAN-only to internet-reachable does widen who could theoretically join, but this is accepted as negligible risk for a casual hobby feature. This acceptance explicitly extends to two axes identified during the final implementation review, beyond "someone else joins a room": (a) **host takeover** — anyone who has seen a room's code/QR can send `{t:"host", room:CODE}` and take over as host, evicting the real one (this is the same code path that lets the legitimate lobby→match navigation re-attach, so it can't be removed without breaking that); (b) **no cap on concurrent rooms/connections** on the single global `LanRelay` instance, so nothing stops unbounded room creation from degrading every live room at once. Both are accepted as-is for this casual, low-traffic feature rather than mitigated with a re-attach token or a `rooms.size` cap — revisit if usage or abuse ever suggests otherwise.
 2. **Local dev workflow is untouched.** `pnpm dev` / `pnpm dev:lan` keep using `script/lan-server.mjs` over plain `ws://`. Only the deployed build gets the Durable Object path. The client branches on `window.location.protocol`, not on any build-time flag.
 3. **Single global Durable Object**, not one DO per room. Cloudflare's own best practice is to shard by coordination unit (one DO per room), but this project's realistic concurrency (a handful of friends' matches, never simultaneous at scale) doesn't need it, and a single instance lets almost all of `lan-server.mjs`'s existing, already-correct room logic carry over verbatim — same in-memory `rooms` Map, same room-code minting on the server side, zero wire-protocol changes for this part. Per-room sharding was rejected because it would require moving room-code generation to the client (with collision-retry logic) purely to satisfy a routing constraint that doesn't matter at this scale.
 
@@ -34,7 +34,7 @@ Three scope decisions, confirmed with the project owner:
 Browser (https://animal-cup.yao-440.workers.dev/lobby)
   │  wss://animal-cup.yao-440.workers.dev/api/lan-ws
   ▼
-custom-worker.ts  (wrangler "main" entry, wraps the OpenNext-generated worker)
+custom-worker.js  (wrangler "main" entry, wraps the OpenNext-generated worker)
   │  pathname === "/api/lan-ws" && Upgrade: websocket ?
   ├─ yes → env.LAN_RELAY.getByName("singleton").fetch(request)   [Durable Object]
   └─ no  → delegate to OpenNext's generated fetch handler (Next.js, unchanged)
@@ -57,13 +57,13 @@ One singleton instance (`getByName("singleton")`), reached only through the cust
 ### Deployment config changes
 
 `wrangler.toml`:
-- `main` changes from `.open-next/worker.js` to `./custom-worker.ts`.
+- `main` changes from `.open-next/worker.js` to `./custom-worker.js`.
 - Add a `durable_objects.bindings` entry (`LAN_RELAY` → class `LanRelay`) and a matching `migrations` entry (`new_sqlite_classes: ["LanRelay"]`).
 - `assets` binding is untouched — asset-serving takes priority for files that exist in `.open-next/assets`; `/api/lan-ws` never matches a static file, so it always reaches the Worker regardless.
 
-New files:
-- `custom-worker.ts` (repo root) — imports the default export from `./.open-next/worker.js`, re-exports `DOQueueHandler` / `DOShardedTagCache` / `BucketCachePurge` (already present in the generated worker today, unused by the current config, but re-exported defensively per OpenNext's documented pattern so enabling DO-backed caching later doesn't silently break), exports the `LanRelay` class, and implements the routing check above.
-- `workers/lan-relay.ts` — the `LanRelay` Durable Object class, ported from `script/lan-server.mjs`.
+New files (plain `.js`, matching the project's no-TypeScript convention — there is no `tsconfig.json` and no other app code is TypeScript):
+- `custom-worker.js` (repo root) — imports the default export from `./.open-next/worker.js`, re-exports `DOQueueHandler` / `DOShardedTagCache` / `BucketCachePurge` (already present in the generated worker today, unused by the current config, but re-exported defensively per OpenNext's documented pattern so enabling DO-backed caching later doesn't silently break), exports the `LanRelay` class, and implements the routing check above.
+- `workers/lan-relay.js` — the `LanRelay` Durable Object class, ported from `script/lan-server.mjs`.
 
 `script/lan-server.mjs` and `script/lan-dev.mjs` are unchanged.
 

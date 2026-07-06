@@ -15,7 +15,7 @@ export { DOQueueHandler, DOShardedTagCache, BucketCachePurge } from "./.open-nex
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/lan-ws" && request.headers.get("Upgrade") === "websocket") {
+    if (url.pathname === "/api/lan-ws" && (request.headers.get("Upgrade") || "").toLowerCase() === "websocket") {
       const stub = env.LAN_RELAY.getByName("singleton");
       return stub.fetch(request);
     }
