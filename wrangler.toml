@@ -1,6 +1,14 @@
 name = "animal-cup"
-main = ".open-next/worker.js"
+main = "./custom-worker.js"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
 
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+[[durable_objects.bindings]]
+name = "LAN_RELAY"
+class_name = "LanRelay"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["LanRelay"]
