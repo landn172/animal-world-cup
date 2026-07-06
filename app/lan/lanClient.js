@@ -1,10 +1,12 @@
 "use client";
 
-// Tiny reconnecting WebSocket client for the LAN relay (script/lan-server.mjs).
-// Shared by the lobby (host), the phone controller (pad), and the in-match host
-// bridge. The relay always lives on port 13001 of whatever host served this
-// page — so the phone that opened http://<lan-ip>:13000/pad talks to
-// ws://<lan-ip>:13001 with no extra config.
+// Tiny reconnecting WebSocket client for the LAN relay. Shared by the lobby
+// (host), the phone controller (pad), and the in-match host bridge. Two
+// backends speak the same JSON protocol: locally, script/lan-server.mjs on
+// port 13001 (plain http, same LAN); once deployed, the LanRelay Durable
+// Object at /api/lan-ws on the same origin (https, same public host — see
+// docs/specs/2026-07-06-lan-relay-durable-object-design.md). lanWsUrl()
+// picks between them by page protocol.
 //
 // Usage:
 //   const lan = createLanClient({ onMessage, onOpen, onClose });
@@ -15,6 +17,9 @@ export const LAN_PORT = 13001;
 
 export function lanWsUrl() {
   if (typeof window === "undefined") return null;
+  if (window.location.protocol === "https:") {
+    return `wss://${window.location.host}/api/lan-ws`;
+  }
   const host = window.location.hostname || "127.0.0.1";
   return `ws://${host}:${LAN_PORT}`;
 }
