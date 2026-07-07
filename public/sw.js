@@ -9,7 +9,7 @@
 // unstamped placeholder; the build re-stamps it. (A SWR rewrite was tried and
 // reverted: re-downloading every asset each load wedged boot on the slow host —
 // so we keep cache-first speed + content-hash invalidation.)
-const CACHE_VERSION = "7fb07c90b25f";
+const CACHE_VERSION = "143769361d3c";
 const CACHE_NAME = "animal-cup-" + CACHE_VERSION;
 const MANIFEST_URL = "/__sw-manifest.json";
 
